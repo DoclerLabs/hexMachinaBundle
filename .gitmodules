@@ -1,0 +1,18 @@
+[submodule "hexCore"]
+	path = hexCore
+	url = https://github.com/DoclerLabs/hexCore.git
+[submodule "hexMVC"]
+	path = hexMVC
+	url = https://github.com/DoclerLabs/hexMVC.git
+[submodule "hexUnit"]
+	path = hexUnit
+	url = https://github.com/DoclerLabs/hexUnit.git
+[submodule "hexState"]
+	path = hexState
+	url = https://github.com/DoclerLabs/hexState.git
+[submodule "hexInject"]
+	path = hexInject
+	url = https://github.com/DoclerLabs/hexInject.git
+[submodule "hexIoC"]
+	path = hexIoC
+	url = https://github.com/DoclerLabs/hexIoC.git
