@@ -19,3 +19,6 @@
 [submodule "hex3rdPartyTools"]
 	path = hex3rdPartyTools
 	url = https://github.com/DoclerLabs/hex3rdPartyTools.git
+[submodule "hexService"]
+	path = hexService
+	url = https://github.com/DoclerLabs/hexService.git
