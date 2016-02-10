@@ -16,3 +16,6 @@
 [submodule "hexIoC"]
 	path = hexIoC
 	url = https://github.com/DoclerLabs/hexIoC.git
+[submodule "hex3rdPartyTools"]
+	path = hex3rdPartyTools
+	url = https://github.com/DoclerLabs/hex3rdPartyTools.git
