@@ -22,7 +22,7 @@
   "author": "DoclerLabs",
   "license": "ISC",
   
-  "devDependencies": {
+  "dependencies": {
 	"hexcore": "git+https://github.com/DoclerLabs/hexCore.git#master",
 	"hexunit": "git+https://github.com/DoclerLabs/hexUnit.git#master",
 	"hexinject": "git+https://github.com/DoclerLabs/hexInject.git#master",
