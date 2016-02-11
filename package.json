@@ -28,7 +28,7 @@
 	"hexinject": "git+https://github.com/DoclerLabs/hexInject.git#master",
 	"hexmvc": "git+https://github.com/DoclerLabs/hexMVC.git#master",
 	"hexioc": "git+https://github.com/DoclerLabs/hexIoC.git#master",
-	"hexservice": "git+https://github.com/DoclerLabs/hexService.git#master"
+	"hexservice": "git+https://github.com/DoclerLabs/hexService.git#master",
 	"hexstate": "git+https://github.com/DoclerLabs/hexState.git#master"
   },
 	"dependencies": {
