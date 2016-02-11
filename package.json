@@ -1,15 +1,43 @@
 {
-  "name": "Hex-Machina",
-  "version": "0.0.0",
-  "private": true,
-  "dependencies": {
-    "grunt": "~0.4.5",
-    "grunt-cli": "0.1.13",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-concat": "^0.5.0",
-    "grunt-contrib-sass": "^0.9.2",
-    "grunt-contrib-uglify": "^0.7.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-rsync": "0.6.2"
-  }
+  "name": "hexmachina",
+  "version": "0.9.0",
+  "description": "Bundle package for hexMachina framework",
+  
+  "directories": {
+    "test": "test",
+	"src": "src"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DoclerLabs/hexMachina.git"
+  },
+  "keywords": [
+    "mvc", 
+    "haxe",
+    "framework" 
+  ],
+  "author": "DoclerLabs",
+  "license": "ISC",
+  
+  "devDependencies": {
+	"hexcore": "git+https://github.com/DoclerLabs/hexCore.git#master",
+	"hexunit": "git+https://github.com/DoclerLabs/hexUnit.git#master",
+	"hexinject": "git+https://github.com/DoclerLabs/hexInject.git#master",
+	"hexmvc": "git+https://github.com/DoclerLabs/hexMVC.git#master",
+	"hexioc": "git+https://github.com/DoclerLabs/hexIoC.git#master",
+	"hexservice": "git+https://github.com/DoclerLabs/hexService.git#master",
+  },
+	"dependencies": {
+		"grunt": "~0.4.5",
+		"grunt-cli": "0.1.13",
+		"grunt-contrib-clean": "^0.6.0",
+		"grunt-contrib-concat": "^0.5.0",
+		"grunt-contrib-sass": "^0.9.2",
+		"grunt-contrib-uglify": "^0.7.0",
+		"grunt-contrib-watch": "^0.6.1",
+		"grunt-rsync": "0.6.2"
+	}
 }
