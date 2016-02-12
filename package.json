@@ -8,7 +8,8 @@
 	"src": "src"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "napa"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,14 @@
 	"hexioc": "git+https://github.com/DoclerLabs/hexIoC.git#master",
 	"hexservice": "git+https://github.com/DoclerLabs/hexService.git#master",
 	"hexstate": "git+https://github.com/DoclerLabs/hexState.git#master"
+  },
+  "devDependencies": {
+    "napa": "^2.3.0"
+  },
+
+  "napa": {
+    "mockatoo": "https://github.com/grosmar/mockatoo.git",
+    "hamcrest": "https://github.com/grosmar/hamcrest-haxe.git"
   },
 	"dependencies": {
 		"grunt": "~0.4.5",
