@@ -1,0 +1,64 @@
+language: haxe
+
+haxe:
+  - development
+
+matrix:
+  # Allow Haxe development to fail.
+  allow_failures:
+    - haxe: development
+
+addons:
+  # This is the preferred way to install apt packages.
+  # However, it only allow some but not all packages.
+  # Alternatively, we can use `sudo apt-get install ...` in the `install:` section.
+  # http://docs.travis-ci.com/user/apt/#Adding-APT-Packages
+  apt:
+    packages:
+      # Python
+      - python3
+      # PHP
+      - php5-cli
+      # C#
+      - mono-devel
+      - mono-mcs
+      # Flash
+      - libgd2-xpm
+      - ia32-libs
+      - ia32-libs-multiarch
+
+install:
+  - git clone --recursive https://github.com/DoclerLabs/hexUnit.git ~/hexunit
+  - git clone --recursive https://github.com/DoclerLabs/hexCore.git ~/hexcore
+  - git clone --recursive https://github.com/DoclerLabs/hexInject.git ~/hexinject
+  - git clone --recursive https://github.com/DoclerLabs/hexMVC.git ~/hexmvc
+  - git clone --recursive https://github.com/DoclerLabs/hexService.git ~/hexservice
+  - git clone --recursive https://github.com/DoclerLabs/hexState.git ~/hexstate
+  - git clone --recursive https://github.com/DoclerLabs/hexIoC.git ~/hexioc
+  # os-specific config
+  - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+      export DISPLAY=:99.0;
+      export AUDIODEV=null;
+    elif [ "${TRAVIS_OS_NAME}" = "osx" ]; then
+      brew update;
+      brew install mono;
+      brew install phantomjs;
+      brew install python3;
+    fi
+  # Download and setup a standalone flash player debugger
+  - haxe flash/install.hxml
+  # Install haxelibs
+  - haxelib install hxcpp
+  - haxelib install hxjava
+  - haxelib install hxcs
+  - haxelib list
+
+script:
+  - haxe build-js.hxml           && node bin/MainIoCTest.js
+  - haxe build-flash.hxml -D fdb && haxe flash/run.hxml bin/MainIoCTest.swf
+  
+notifications:
+  email:
+    recipients:
+      - francis_bourre@me.com
+      - peterphonix@gmail.com
