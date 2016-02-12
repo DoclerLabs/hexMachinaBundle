@@ -1,11 +1,11 @@
 package;
 
-import hex.unittest.notifier.ConsoleNotifier;
 import hex.unittest.runner.ExMachinaUnitCore;
 
 #if flash
 import hex.unittest.notifier.TraceNotifier;
 #else
+import hex.unittest.notifier.ConsoleNotifier;
 #end
 
 /**
