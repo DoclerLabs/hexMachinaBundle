@@ -1,2 +1,2 @@
 build-each.hxml
--js bin/MainMachinaTest.js
+-js bin/TravisMachinaTest.js
