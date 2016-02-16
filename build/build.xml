@@ -3,12 +3,16 @@
 	
 	<property file="build/build.properties"/>
 	
-	<target name="RUN JS unit tests">
+	<target name="Compile JS unit tests">
 		<antcall target="compile unit tests">
 			<param name="mainClass" value="HexMachinaJS"/>
 			<param name="compileTarget" value="js"/>
 			<param name="outputFile" value="Main.js"/>
 		</antcall>
+	</target>
+	
+	<target name="BUILD JS unit tests">
+		<antcall target="Compile JS unit tests"/>
 		<antcall target="Launch JS unit tests"/>
 		
 	</target>
