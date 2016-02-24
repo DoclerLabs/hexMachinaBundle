@@ -3,6 +3,18 @@
 	
 	<property file="build/build.properties"/>
 	
+	<target name="BUILD JS unit tests">
+		<antcall target="Compile JS unit tests"/>
+		<antcall target="Launch JS unit tests"/>
+	</target>
+	
+	<target name="BUILD Flash unit tests">
+		<antcall target="Compile Flash unit tests"/>
+		<antcall target="Launch Flash unit tests">
+			<param name="outputFile" value="Main.swf"/>
+		</antcall>
+	</target>
+	
 	<target name="Compile JS unit tests">
 		<antcall target="compile unit tests">
 			<param name="mainClass" value="HexMachinaJS"/>
@@ -11,22 +23,12 @@
 		</antcall>
 	</target>
 	
-	<target name="BUILD JS unit tests">
-		<antcall target="Compile JS unit tests"/>
-		<antcall target="Launch JS unit tests"/>
-		
-	</target>
-	
-	<target name="RUN Flash unit tests">
+	<target name="Compile Flash unit tests">
 		<antcall target="compile unit tests">
 			<param name="mainClass" value="HexMachinaFlash"/>
 			<param name="compileTarget" value="swf"/>
 			<param name="outputFile" value="Main.swf"/>
 		</antcall>
-		<antcall target="Launch Flash unit tests">
-			<param name="outputFile" value="Main.swf"/>
-		</antcall>
-		
 	</target>
 
     <target name="compile unit tests">
@@ -38,7 +40,7 @@
 	
 	<target name="Launch JS unit tests">
 		<exec executable="${browserLocation}" spawn="yes">
-			<arg line="http://localhost:2000/index.html" />
+			<arg line="${basedir}/bin/index.html" />
 		</exec>
 	</target>
 	
