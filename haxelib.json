@@ -1,0 +1,15 @@
+{
+  "name": "hexmachina",
+  "license": "MIT",
+  "classPath": "src",
+  "tags": ["hexmachina", "mvc"],
+  "description": "hexMachina is a modular mvc framework",
+  "contributors": ["francisbourre","grosmar"],
+  "releasenote": "first release",
+  "version": "0.0.1",
+  "url": "https://github.com/DoclerLabs/hexMachina",
+  "dependencies": 
+  {
+    "hexcore": "git+https://github.com/DoclerLabs/hexCore.git"
+  }
+}
