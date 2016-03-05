@@ -10,6 +10,6 @@
   "url": "https://github.com/DoclerLabs/hexMachina",
   "dependencies": 
   {
-    "hexcore": "git+https://github.com/DoclerLabs/hexCore.git"
+    "hexcore": "git:https://github.com/DoclerLabs/hexCore.git"
   }
 }
