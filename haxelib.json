@@ -10,12 +10,12 @@
   "url": "https://github.com/DoclerLabs/hexMachina",
   "dependencies": 
   {
-	"hexcore": "",
-	"hexioc": "",
-	"hexservice": "",
-	"hexunit": "",
-	"hexstate": "",
-	"hexmvc": "",
-	"hexinject": ""
+	"hexcore": "git:https://github.com/DoclerLabs/hexCore.git",
+	"hexioc": "git:https://github.com/DoclerLabs/hexIoC.git",
+	"hexservice": "git:https://github.com/DoclerLabs/hexService.git",
+	"hexunit": "git:https://github.com/DoclerLabs/hexUnit.git",
+	"hexstate": "git:https://github.com/DoclerLabs/hexState.git",
+	"hexmvc": "git:https://github.com/DoclerLabs/hexMVC.git",
+	"hexinject": "git:https://github.com/DoclerLabs/hexInject.git"
   }
 }
