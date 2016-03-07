@@ -1,0 +1,7 @@
+-lib hexcore
+-lib hexioc
+-lib hexservice
+-lib hexunit
+-lib hexstate
+-lib hexmvc
+-lib inject
