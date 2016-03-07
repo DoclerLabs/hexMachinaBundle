@@ -2,14 +2,20 @@
   "name": "hexmachina",
   "license": "MIT",
   "classPath": "src",
-  "tags": ["hexmachina", "mvc"],
-  "description": "hexMachina is a modular mvc framework",
-  "contributors": ["francisbourre","grosmar"],
-  "releasenote": "first release",
-  "version": "0.0.1",
+  "tags": ["hexmachina", "mvc", "oop"],
+  "description": "A powerful multi-modular MVC+S system written in Haxe",
+  "contributors": ["FrancisBourre","grosmar"],
+  "releasenote": "First release. Still alpha testing",
+  "version": "0.1.0",
   "url": "https://github.com/DoclerLabs/hexMachina",
   "dependencies": 
   {
-	"mconsole": ""
+	"hexcore": "",
+	"hexioc": "",
+	"hexservice": "",
+	"hexunit": "",
+	"hexstate": "",
+	"hexmvc": "",
+	"hexinject": ""
   }
 }
