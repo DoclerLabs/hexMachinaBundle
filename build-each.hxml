@@ -11,6 +11,8 @@
 -cp /home/travis/hexioc/test
 -cp /home/travis/hexservice/src
 -cp /home/travis/hexservice/test
+-cp /home/travis/hexannotation/src
+-cp /home/travis/hexannotation/test
 -cp /home/travis/hexstate/src
 -cp /home/travis/hexstate/test
 -cp /home/travis/hexunit/src

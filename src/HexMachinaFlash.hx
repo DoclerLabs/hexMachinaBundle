@@ -1,5 +1,6 @@
 package;
 
+import hex.HexAnnotationSuite;
 import flash.Lib;
 import hex.HexCoreSuite;
 import hex.HexInjectSuite;
@@ -25,6 +26,7 @@ class HexMachinaFlash
         emu.addTest( HexUnitSuite );
 		emu.addTest( HexStateSuite );
 		emu.addTest( HexServiceSuite );
+		emu.addTest( HexAnnotationSuite );
         emu.run();
 	}
 }

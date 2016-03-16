@@ -34,7 +34,7 @@
     <target name="compile unit tests">
 		<exec executable="node" failonerror="true">
             <arg line="C:/Users/francis.bourre/node_modules/haxe/bin/haxe-cli.js"/>
-            <arg line="-cp src -cp hexunit/src -cp hexunit/test -cp hexcore/src -cp hexcore/test -cp hexinject/src -cp hexinject/test -cp hexservice/src -cp hexservice/test -cp hexmvc/src -cp hexmvc/test -cp hexIoC/src -cp hexIoC/test -cp hexState/src -cp hexState/test -${compileTarget} ${basedir}/bin/${outputFile} -main ${mainClass} -debug -swf-header 1024:768:60:000000"/>
+            <arg line="-cp src -cp hexunit/src -cp hexunit/test -cp hexcore/src -cp hexcore/test -cp hexinject/src -cp hexinject/test -cp hexservice/src -cp hexservice/test -cp hexmvc/src -cp hexmvc/test -cp hexIoC/src -cp hexIoC/test -cp hexState/src -cp hexState/test -cp hexAnnotation/src -cp hexAnnotation/test -cp hexSpeedInject/src -cp hexSpeedInject/test -${compileTarget} ${basedir}/bin/${outputFile} -main ${mainClass} -debug -swf-header 1024:768:60:000000"/>
         </exec>
     </target>
 	

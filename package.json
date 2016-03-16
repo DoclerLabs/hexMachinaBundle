@@ -31,7 +31,8 @@
 	"hexmvc": "git+https://github.com/DoclerLabs/hexMVC.git#master",
 	"hexioc": "git+https://github.com/DoclerLabs/hexIoC.git#master",
 	"hexservice": "git+https://github.com/DoclerLabs/hexService.git#master",
-	"hexstate": "git+https://github.com/DoclerLabs/hexState.git#master"
+	"hexstate": "git+https://github.com/DoclerLabs/hexState.git#master",
+	"hexannotation": "git+https://github.com/DoclerLabs/hexAnnotation.git#master"
   },
   "devDependencies": {
     "napa": "^2.3.0"

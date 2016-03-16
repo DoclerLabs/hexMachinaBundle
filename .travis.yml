@@ -25,6 +25,7 @@ install:
   - git clone --recursive https://github.com/DoclerLabs/hexService.git ~/hexservice
   - git clone --recursive https://github.com/DoclerLabs/hexState.git ~/hexstate
   - git clone --recursive https://github.com/DoclerLabs/hexIoC.git ~/hexioc
+  - git clone --recursive https://github.com/DoclerLabs/hexIoC.git ~/hexannotation
   - export DISPLAY=:99.0;
   - export AUDIODEV=null;
   - haxe flash/install.hxml
