@@ -7,6 +7,7 @@ import hex.HexInjectSuite;
 import hex.HexMVCSuite;
 import hex.HexIoCSuite;
 import hex.HexServiceSuite;
+import hex.HexSpeedInjectSuite;
 import hex.HexUnitSuite;
 import hex.state.HexStateSuite;
 import hex.unittest.notifier.FlashUnitTestNotifier;
@@ -27,6 +28,7 @@ class HexMachinaFlash
 		emu.addTest( HexStateSuite );
 		emu.addTest( HexServiceSuite );
 		emu.addTest( HexAnnotationSuite );
+		emu.addTest( HexSpeedInjectSuite );
         emu.run();
 	}
 }

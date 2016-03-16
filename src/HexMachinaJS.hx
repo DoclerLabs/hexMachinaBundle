@@ -6,6 +6,7 @@ import hex.HexInjectSuite;
 import hex.HexIoCSuite;
 import hex.HexMVCSuite;
 import hex.HexServiceSuite;
+import hex.HexSpeedInjectSuite;
 import hex.HexUnitSuite;
 import hex.state.HexStateSuite;
 import hex.unittest.notifier.BrowserUnitTestNotifier;
@@ -26,6 +27,7 @@ class HexMachinaJS
 		emu.addTest( HexStateSuite );
 		emu.addTest( HexServiceSuite );
 		emu.addTest( HexAnnotationSuite );
+		emu.addTest( HexSpeedInjectSuite );
         emu.run();
 	}
 }
