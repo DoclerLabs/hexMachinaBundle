@@ -13,8 +13,6 @@
 -cp /home/travis/hexservice/test
 -cp /home/travis/hexannotation/src
 -cp /home/travis/hexannotation/test
--cp /home/travis/hexspeedinject/src
--cp /home/travis/hexspeedinject/test
 -cp /home/travis/hexstate/src
 -cp /home/travis/hexstate/test
 -cp /home/travis/hexunit/src
