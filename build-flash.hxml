@@ -1,2 +1,3 @@
-build-each.hxml
+build-each.hxml 
+-swf-version 11
 -swf bin/TravisMachinaTest.swf
