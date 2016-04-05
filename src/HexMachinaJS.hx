@@ -17,7 +17,7 @@ class HexMachinaJS
     {
 		var emu : ExMachinaUnitCore = new ExMachinaUnitCore();
         emu.addListener( new BrowserUnitTestNotifier( "console" ) );
-		
+
 		emu.addTest( HexMVCSuite );
 		emu.addTest( HexCoreSuite );
         emu.addTest( HexInjectSuite );
