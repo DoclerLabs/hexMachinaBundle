@@ -3,6 +3,7 @@ package;
 import hex.unittest.runner.ExMachinaUnitCore;
 
 #if flash
+import flash.Lib;
 import hex.unittest.notifier.TraceNotifier;
 #else
 import hex.unittest.notifier.ConsoleNotifier;
