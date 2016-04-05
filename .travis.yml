@@ -32,7 +32,7 @@ install:
 
 script:
   - haxe build-js.hxml           && node bin/TravisMachinaTest.js
-  - haxe build-flash.hxml -D fdb && haxe flash/run.hxml bin/TravisMachinaTest.swf
+  - haxe build-flash.hxml -swf-version 11 -D fdb && haxe flash/run.hxml bin/TravisMachinaTest.swf
   
 notifications:
   email:
