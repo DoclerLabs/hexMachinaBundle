@@ -9,7 +9,7 @@ import hex.HexMVCSuite;
 import hex.HexServiceSuite;
 import hex.HexUnitSuite;
 import hex.state.HexStateSuite;
-import hex.unittest.notifier.FlashUnitTestNotifier;
+import hex.unittest.notifier.TraceNotifier;
 import hex.unittest.runner.ExMachinaUnitCore;
 
 class HexMachinaFlash
@@ -17,7 +17,7 @@ class HexMachinaFlash
     static public function main() : Void
     {
 		var emu : ExMachinaUnitCore = new ExMachinaUnitCore();
-        emu.addListener( new FlashUnitTestNotifier( Lib.current.stage ) );
+        emu.addListener( new TraceNotifier( Lib.current.loaderInfo ) );
 		
 		emu.addTest( HexCoreSuite );
 		emu.addTest( HexMVCSuite );
@@ -27,6 +27,7 @@ class HexMachinaFlash
 		emu.addTest( HexStateSuite );
 		emu.addTest( HexServiceSuite );
 		emu.addTest( HexAnnotationSuite );
+		
         emu.run();
 	}
 }
