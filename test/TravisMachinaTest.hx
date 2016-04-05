@@ -19,7 +19,7 @@ class TravisMachinaTest
 		var emu = new ExMachinaUnitCore();
         
 		#if flash
-		emu.addListener( new TraceNotifier( false ) );
+		emu.addListener( new TraceNotifier( Lib.current.loaderInfo ) );
 		#else
 		emu.addListener( new ConsoleNotifier( false ) );
 		#end
