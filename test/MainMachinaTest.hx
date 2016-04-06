@@ -14,7 +14,7 @@ import hex.unittest.notifier.ConsoleNotifier;
  * ...
  * @author Francis Bourre
  */
-class TravisMachinaTest
+class MainMachinaTest
 {
 	static public function main() : Void
 	{

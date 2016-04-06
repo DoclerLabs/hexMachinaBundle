@@ -1,5 +1,4 @@
--main TravisMachinaTest
--cp src
+-main MainMachinaTest
 -cp test
 -cp /home/travis/hexcore/src
 -cp /home/travis/hexcore/test
