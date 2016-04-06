@@ -1,3 +1,5 @@
+[![TravisCI Build Status](https://travis-ci.org/DoclerLabs/hexMachina.svg?branch=master)](https://travis-ci.org/DoclerLabs/hexMachina) Contains the full hexMachina framework
+
 * Need at least 2.0.0 Ruby or Higher then: gem install jekyll
 * jekyll serve
 
