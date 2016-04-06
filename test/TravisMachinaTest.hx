@@ -1,6 +1,7 @@
 package;
 
 import hex.unittest.runner.ExMachinaUnitCore;
+import hex.unittest.runner.TestRunner;
 
 #if flash
 import flash.Lib;
@@ -20,6 +21,7 @@ class TravisMachinaTest
 		var emu = new ExMachinaUnitCore();
         
 		#if flash
+		TestRunner.RENDER_DELAY = 0;
 		emu.addListener( new TraceNotifier( Lib.current.loaderInfo ) );
 		#else
 		emu.addListener( new ConsoleNotifier( false ) );
