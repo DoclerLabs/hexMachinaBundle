@@ -5,8 +5,8 @@
   "tags": ["hexmachina", "mvc", "oop"],
   "description": "A powerful multi-modular MVC+S system written in Haxe",
   "contributors": ["doclerlabs"],
-  "releasenote": "First release. Still alpha testing",
-  "version": "0.1.2",
+  "releasenote": "${releasenote}",
+  "version": "${version}",
   "url": "https://github.com/DoclerLabs/hexMachina",
   "dependencies": 
   {
