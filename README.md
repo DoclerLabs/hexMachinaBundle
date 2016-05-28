@@ -37,3 +37,5 @@
 * Set disqus color from admin
 * Divider fixes
 * Allow domains for api requests in disqus
+
+*Find more information about hexMachina on [hexmachina.org](http://hexmachina.org/)*
