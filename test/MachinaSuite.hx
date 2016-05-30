@@ -1,5 +1,6 @@
 package;
 
+import hex.HexAnnotationSuite;
 import hex.HexCoreSuite;
 import hex.HexInjectSuite;
 import hex.HexIoCSuite;
@@ -15,5 +16,5 @@ import hex.state.HexStateSuite;
 class MachinaSuite
 {
 	@Suite( "Machina suite" )
-    public var list : Array<Class<Dynamic>> = [ HexUnitSuite, HexCoreSuite, HexInjectSuite, HexServiceSuite, HexMVCSuite, HexIoCSuite, HexStateSuite ];
+    public var list : Array<Class<Dynamic>> = [ HexUnitSuite, HexCoreSuite, HexInjectSuite, HexServiceSuite, HexMVCSuite, HexIoCSuite, HexStateSuite, HexAnnotationSuite ];
 }
