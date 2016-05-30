@@ -1,5 +1,7 @@
 package;
 
+import hex.unittest.notifier.BrowserUnitTestNotifier;
+import hex.unittest.notifier.WebSocketNotifier;
 import hex.unittest.runner.ExMachinaUnitCore;
 import hex.unittest.runner.TestRunner;
 
@@ -25,6 +27,8 @@ class MainMachinaTest
 		emu.addListener( new TraceNotifier( Lib.current.loaderInfo ) );
 		#else
 		emu.addListener( new ConsoleNotifier( false ) );
+		emu.addListener( new BrowserUnitTestNotifier( "console" ) );
+		//emu.addListener( new WebSocketNotifier( "ws://localhost:443" ) );
 		#end
 		
         emu.addTest( MachinaSuite );
