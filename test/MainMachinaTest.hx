@@ -27,7 +27,7 @@ class MainMachinaTest
 		emu.addListener( new TraceNotifier( Lib.current.loaderInfo ) );
 		#else
 		emu.addListener( new ConsoleNotifier( false ) );
-		emu.addListener( new BrowserUnitTestNotifier( "console" ) );
+		// emu.addListener( new BrowserUnitTestNotifier( "console" ) );
 		//emu.addListener( new WebSocketNotifier( "ws://localhost:443" ) );
 		#end
 		
