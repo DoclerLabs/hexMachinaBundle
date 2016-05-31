@@ -1,11 +1,11 @@
 package;
 
-import hex.unittest.notifier.BrowserUnitTestNotifier;
 import hex.unittest.notifier.TraceNotifier;
-import hex.unittest.notifier.WebSocketNotifier;
 import hex.unittest.runner.ExMachinaUnitCore;
 import hex.unittest.runner.TestRunner;
 #if js
+import hex.unittest.notifier.WebSocketNotifier;
+import hex.unittest.notifier.BrowserUnitTestNotifier;
 import hex.unittest.notifier.ConsoleNotifier;
 #elseif flash
 import flash.Lib;
