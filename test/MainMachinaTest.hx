@@ -1,6 +1,8 @@
 package;
 
+import hex.unittest.notifier.BrowserUnitTestNotifier;
 import hex.unittest.notifier.TraceNotifier;
+import hex.unittest.notifier.WebSocketNotifier;
 import hex.unittest.runner.ExMachinaUnitCore;
 import hex.unittest.runner.TestRunner;
 #if js
@@ -26,6 +28,8 @@ class MainMachinaTest
 		emu.addListener( new TraceNotifier( Lib.current.loaderInfo ) );
 		#elseif js
 		emu.addListener( new ConsoleNotifier( false ) );
+		//emu.addListener( new BrowserUnitTestNotifier( "console" ) );
+		//emu.addListener( new WebSocketNotifier( "ws://localhost:6660" ) );
 		#else
 		emu.addListener( new TraceNotifier( false ) );
 		#end
