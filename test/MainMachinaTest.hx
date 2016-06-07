@@ -20,7 +20,6 @@ class MainMachinaTest
 {
 	static public function main() : Void
 	{
-		
 		var emu = new ExMachinaUnitCore();
         
 		#if flash
