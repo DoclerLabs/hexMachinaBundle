@@ -24,8 +24,12 @@ class Run {
 				// but if it runs about 8 times, it should succeed one of those...
 				var c = -1;
 				for (i in 0...8) {
+					println('Launch Flash player... $i');
 					if ((c = command("xvfb-run", ["flash/flashplayerdebugger", swf])) == 0)
+					{
+						println('Flash runs successfully $swf file');
 						break;
+					}
 					println('retry... (${i+1})');
 				}
 				c;
