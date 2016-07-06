@@ -7,6 +7,8 @@ haxe:
 addons:
   apt:
     packages:
+      # PHP
+      - php5-cli
       # Flash
       - libcurl3:i386
       - libglib2.0-0:i386
@@ -31,6 +33,7 @@ install:
   - haxe flash/install.hxml
 
 script:
+  - haxe build-php.hxml          && php bin/index.php
   - haxe build-js.hxml           && node bin/TravisMachinaTest.js
   - haxe build-flash.hxml -D fdb && haxe flash/run.hxml bin/TravisMachinaTest.swf
   
@@ -39,6 +42,7 @@ notifications:
     recipients:
       - francis_bourre@me.com
       - peterphonix@gmail.com
+      - laurent@geturl.net
   webhooks:
     urls:
       - https://webhooks.gitter.im/e/09a17f76453cb9d1c34d
