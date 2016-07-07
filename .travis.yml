@@ -33,7 +33,7 @@ install:
   - haxe flash/install.hxml
 
 script:
-  - haxe build-php.hxml          && php bin/index.php
+  - if [ TRAVIS_HAXE_VERSION != "3.2.1" ]; then haxe build-php.hxml && php bin/index.php; fi
   - haxe build-js.hxml           && node bin/TravisMachinaTest.js
   - haxe build-flash.hxml -D fdb && haxe flash/run.hxml bin/TravisMachinaTest.swf
   
