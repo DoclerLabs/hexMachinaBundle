@@ -1,0 +1,806 @@
+hexMVC:
+  - title: Module example with service locator
+    code: |
+        private class MModule extends Module
+        {
+            public function new( serviceLocator : IStatefulConfig )
+            {
+                super();
+                this._addStatefulConfigs( [serviceLocator] );
+                this._addStatelessConfigClasses( [MStatelessCommandConfig, MStatelessModelConfig] );
+            }
+            
+            override private function _getRuntimeDependencies() : IRuntimeDependencies
+            {
+                var rt = new RuntimeDependencies();
+                rt.addServiceDependencies( [IGitService] );
+                return rt;
+            }
+            
+            override public function _onInitialisation() : Void 
+            {
+                this._dispatchPrivateMessage( MessageTypeList.TEST, new Request( [new ExecutionPayload( something, ISomething )] ) );
+            }
+        }
+    type: code-haxe
+    
+  - title: Model config
+    code: |
+        private class MStatelessModelConfig extends StatelessModelConfig
+        {
+            override public function configure() : Void 
+            {
+                this.mapModel( IMModel, MModel  );
+            }
+        }
+    type: code-haxe
+    
+  - title: Stateful command config
+    code: |
+        private class MStatefulCommandConfig extends StatefulCommandConfig
+        {
+            public function new()
+            {
+                super();
+            }
+            
+            override public function configure( injector : IDependencyInjector ) : Void
+            {
+                super.configure( injector );
+                this.map( MessageTypeList.TEST, TestCommand ).once().withGuards( MyGuardClass ).withCompleteHandlers([ function( e : AsyncCommandEvent ){ trace( e ); } ]);
+            }
+        }
+    type: code-haxe
+    
+  - title: Asynchronous command example with injections
+    code: |
+        private class TestCommand extends AsyncCommand implements IHTTPServiceListener<GitServiceConfiguration> implements IInjectorContainer
+        {
+            @Inject
+            public var model : IMModel;
+            
+            @Inject
+            public var service : IGitService;
+            
+            override public function execute( ?request : Request ) : Void
+            {
+                this.service.addHTTPServiceListener( this );
+                this.service.call();
+            }
+            
+            public function onServiceTimeout( service : IHTTPService<GitServiceConfiguration> ) : Void 
+            {
+                this._handleFail();
+            }
+            
+            public function onServiceComplete( service : IHTTPService<GitServiceConfiguration> ) : Void 
+            {
+                this.model.setValue( service.getResult() );
+                this._handleComplete();
+            }
+            
+            public function onServiceFail( service : IHTTPService<GitServiceConfiguration> ) : Void 
+            {
+                this._handleFail();
+            }
+            
+            public function onServiceCancel( service : IHTTPService<GitServiceConfiguration> ) : Void 
+            {
+                this._handleCancel();
+            }
+        }
+    type: code-haxe
+hexInject:
+  - title: Simple example
+    code: |
+        var injector = new Injector;
+        
+        //create a basic mapping:
+        injector.map( Model ).toType( Model );
+        
+        //map to another class:
+        injector.map( Model ).toType( BetterModel );
+        
+        //map an interface to a value:
+        injector.map( IEventDispatcher ).toValue( new EventDispatcher() );
+        
+        //map an interface to a singleton:
+        injector.map( IEventDispatcher ).toSingleton( EventDispatcher );
+    type: code-haxe
+    
+  - title: Properties injection
+    code: |
+        class MockClass implements IInjectorContainer
+        {
+            @Inject
+            public var property1 : Interface;
+            
+            @Inject( "name" )
+            public var property2 : Interface;
+            
+            public function new()
+            {
+                
+            }
+        }
+    type: code-haxe
+    
+  - title: Constructor injections with one named and optional
+    code: |
+        class MockClass implements IInjectorContainer
+        {
+            var m_dependency    : IModel;
+            var m_dependency2   : String;
+            
+            @Inject( null, "name" )
+            @Optional( false, true )
+            public function new( dependency : IModel, dependency2 : String = "hello world" )
+            {
+                this.m_dependency   = dependency;
+                this.m_dependency2  = dependency2;
+            }
+        }
+    type: code-haxe
+    
+  - title: Method injections with named dependencies
+    code: |
+        class MockClass implements IInjectorContainer
+        {
+            var m_dependency    : IModel;
+            var m_dependency2   : String;
+            
+            public function new()
+            {
+                
+            }
+            
+            @Inject( "name1", "name2" ) : Void
+            public function setDependencies( dependency : IModel, dependency2 : String )
+            {
+                this.m_dependency   = dependency;
+                this.m_dependency2  = dependency2;
+            }
+        }
+    type: code-haxe
+    
+  - title: Postconstruct methods
+    code: |
+        class MockClass implements IInjectorContainer
+        {
+            public function new()
+            {
+                
+            }
+            
+            @PostConstruct( 0 )
+            public function doSomething() : Void
+            {
+                //this method will be called after constructor
+            }
+            
+            @PostConstruct( 1)
+            public function doSomethingMore() : Void
+            {
+                //this method will be called after 'doSomething' call
+            }
+        }
+    type: code-haxe
+    
+  - title: Predestroy methods
+    code: |
+        class MockClass implements IInjectorContainer
+        {
+            public function new()
+            {
+                
+            }
+            
+            @PreDestroy( 0 )
+            public function doSomething() : Void
+            {
+                //this method will be called when this instance will be destroyed
+            }
+            
+            @PreDestroy( 1)
+            public function doSomethingMore() : Void
+            {
+                //this method will be called after 'doSomething' call
+            }
+        }
+    type: code-haxe
+hexIoC:
+  - title: Parsing DSL at compile-time
+    code: |
+        var applicationAssembler = XmlCompiler.readXmlFile( "example.xml" );
+    type: code-haxe
+    
+  - title: Parsing DSL at runtime
+    code: |
+        var applicationAssembler = XmlReader.readXmlFile( "example.xml" );
+    type: code-haxe
+    
+  - title: Simple example
+    code: |
+        <root name="applicationContext">
+            <test id="s" value="hello"/>
+        </root>
+    type: code-xml
+    
+  - title: Building dynamic object
+    code: |
+        <root name="applicationContext">
+            <test id="obj" type="Object">
+                <property name="name" value="Francis"/>
+                <property name="age" type="Int" value="44"/>
+                <property name="height" type="Float" value="1.75"/>
+                <property name="isWorking" type="Bool" value="true"/>
+            </test>
+        </root>
+    type: code-xml
+    
+  - title: Passing arguments to constructor
+    code: |
+        <root name="applicationContext">
+            <bean id="size" type="hex.structures.Size">
+                <argument type="Int" value="10"/>
+                <argument type="Int" value="20"/>
+            </bean>
+        </root>
+    type: code-xml
+    
+  - title: Injection by using references
+    code: |
+        <root name="applicationContext">
+            <rectangle id="rect" type="hex.ioc.parser.xml.mock.MockRectangle">
+                <argument ref="rectPosition.x"/>
+                <argument ref="rectPosition.y"/>
+                <property name="size" ref="rectSize" />
+            </rectangle>
+            
+            <size id="rectSize" type="hex.structures.Point">
+                <argument type="Int" value="30"/>
+                <argument type="Int" value="40"/>
+            </size>
+            
+            <position id="rectPosition" type="hex.structures.Point">
+                <property type="Int" name="x" value="10"/>
+                <property type="Int" name="y" value="20"/>
+            </position>
+        </root>
+    type: code-xml
+    
+  - title: Injection and method call
+    code: |
+        <root name="applicationContext">
+            <rectangle id="rect" type="hex.ioc.parser.xml.mock.MockRectangle">
+                <property name="size" ref="rectSize" />
+                <method-call name="offsetPoint">
+                    <argument ref="rectPosition"/>
+                </method-call></rectangle>
+            
+            <size id="rectSize" type="hex.structures.Point">
+                <argument type="Int" value="30"/>
+                <argument type="Int" value="40"/>
+            </size>
+            
+            <position id="rectPosition" type="hex.structures.Point">
+                <property type="Int" name="x" value="10"/>
+                <property type="Int" name="y" value="20"/>
+            </position>
+            
+            <rectangle id="anotherRect" type="hex.ioc.parser.xml.mock.MockRectangle">
+                <property name="size" ref="rectSize" />
+                <method-call name="reset"/>
+            </rectangle>
+        </root>
+    type: code-xml
+    
+  - title: Singleton instantiation
+    code: |
+        <root name="applicationContext">
+            <gateway id="gateway" value="http://localhost/amfphp/gateway.php"/>
+            
+            <service id="service" type="hex.ioc.parser.xml.mock.MockServiceProvider" singleton-access="getInstance">
+                <method-call name="setGateway">
+                    <argument ref="gateway" />
+                </method-call>
+            </service>
+        </root>
+    type: code-xml
+    
+  - title: Factory instantiation
+    code: |
+        <root name="applicationContext">
+            <rectangle id="rect" type="hex.ioc.parser.xml.mock.MockRectangleFactory" factory="getRectangle">
+                <argument type="Int" value="10"/><argument type="Int" value="20"/>
+                <argument type="Int" value="30"/><argument type="Int" value="40"/>
+            </rectangle>
+        </root>
+    type: code-xml
+    
+  - title: Factory instantiation using singleton
+    code: |
+        <root name="applicationContext">
+            <point id="point" type="hex.ioc.parser.xml.mock.MockPointFactory" singleton-access="getInstance" factory="getPoint">
+                <argument type="Int" value="10"/>
+                <argument type="Int" value="20"/>
+            </point>
+        </root>
+    type: code-xml
+    
+  - title: XML type parsed
+    code: |
+        <root name="applicationContext">
+            <data id="fruits" type="XML" parser-class="hex.ioc.parser.xml.mock.MockXMLParser">
+                <root>
+                    <node>orange</node>
+                    <node>apple</node>
+                    <node>banana</node>
+                </root>
+            </data>
+        </root>
+    type: code-xml
+    
+  - title: Array containing references
+    code: |
+        <root name="applicationContext">
+            <collection id="fruits" type="Array">
+                <argument ref="fruit0" />
+                <argument ref="fruit1" />
+                <argument ref="fruit2" />
+            </collection>
+            
+            <fruit id="fruit0" type="hex.ioc.parser.xml.mock.MockFruitVO"><argument value="orange"/></fruit>
+            <fruit id="fruit1" type="hex.ioc.parser.xml.mock.MockFruitVO"><argument value="apple"/></fruit>
+            <fruit id="fruit2" type="hex.ioc.parser.xml.mock.MockFruitVO"><argument value="banana"/></fruit>
+        </root>
+    type: code-xml
+    
+  - title: Building an HashMap
+    code: |
+        <root name="applicationContext">
+            <collection id="fruits" type="hex.core.HashMap">
+                <item> <key value="0"/> <value ref="fruit0"/></item>
+                <item> <key type="Int" value="1"/> <value ref="fruit1"/></item>
+                <item> <key ref="stubKey"/> <value ref="fruit2"/></item>
+            </collection>
+            
+            <fruit id="fruit0" type="hex.ioc.parser.xml.mock.MockFruitVO"><argument value="orange"/></fruit>
+            <fruit id="fruit1" type="hex.ioc.parser.xml.mock.MockFruitVO"><argument value="apple"/></fruit>
+            <fruit id="fruit2" type="hex.ioc.parser.xml.mock.MockFruitVO"><argument value="banana"/></fruit>
+            
+            <point id="stubKey" type="hex.structures.Point"/>
+        </root>
+    type: code-xml
+    
+  - title: Module listening another module
+    code: |
+        <root name="applicationContext">
+            <chat id="chat" type="hex.ioc.parser.xml.mock.MockChatModule">
+                <listen ref="translation"/>
+            </chat>
+            
+            <translation id="translation" type="hex.ioc.parser.xml.mock.MockTranslationModule">
+                <listen ref="chat">
+                    <event static-ref="hex.ioc.parser.xml.mock.MockChatModule.TEXT_INPUT" method="onSomethingToTranslate"/>
+                </listen>
+            </translation>
+        </root>
+    type: code-xml
+    
+  - title: Module listening another module with adapter strategy
+    code: |
+        <root name="applicationContext">
+            <chat id="chat" type="hex.ioc.parser.xml.mock.MockChatModule">
+                <listen ref="translation"/>
+            </chat>
+            
+            <translation id="translation" type="hex.ioc.parser.xml.mock.MockTranslationModule">
+                <listen ref="chat">
+                    <event static-ref="hex.ioc.parser.xml.mock.MockChatModule.TEXT_INPUT" method="onTranslateWithTime" strategy="hex.ioc.parser.xml.mock.MockChatAdapterStrategy"/>
+                </listen>
+            </translation>
+        </root>
+    type: code-xml
+    
+  - title: Class reference
+    code: |
+        <root name="applicationContext">
+            <RectangleClass id="RectangleClass" type="Class" value="hex.ioc.parser.xml.mock.MockRectangle"/>
+            
+            <test id="classContainer" type="Object">
+                <property name="AnotherRectangleClass" ref="RectangleClass"/>
+            </test>
+        </root>
+    type: code-xml
+    
+  - title: Building a service locator
+    code: |
+        <root name="applicationContext">
+            <serviceLocator id="serviceLocator" type="hex.config.stateful.ServiceLocator">
+                <item> <key type="Class" value="hex.ioc.parser.xml.mock.IMockFacebookService"/> <value ref="facebookService"/></item>
+            </serviceLocator>
+        </root>
+    type: code-xml
+    
+  - title: Building a mapping configuration with mapped service classes
+    code: |
+        <root name="applicationContext">
+            <config id="config" type="hex.ioc.di.MappingConfiguration">
+                <item map-name="amazon0"> <key type="Class" value="hex.ioc.parser.xml.mock.IMockAmazonService"/> <value type="Class" value="hex.ioc.parser.xml.mock.MockAmazonService"/></item>
+                <item map-name="amazon1"> <key type="Class" value="hex.ioc.parser.xml.mock.IMockAmazonService"/> <value type="Class" value="hex.ioc.parser.xml.mock.AnotherMockAmazonService"/></item>
+            </config>
+        </root>
+    type: code-xml
+    
+  - title: Module listening a service
+    code: |
+        <root name="applicationContext">
+            <service id="myService" type="hex.ioc.parser.xml.mock.MockStubStatefulService"/>
+            
+            <module id="myModule" type="hex.ioc.parser.xml.mock.MockModuleWithServiceCallback">
+                <listen ref="myService">
+                    <event static-ref="hex.ioc.parser.xml.mock.MockStubStatefulService.BOOLEAN_VO_UPDATE" method="onBooleanServiceCallback"/>
+                </listen>
+            </module>
+        </root>
+    type: code-xml
+    
+  - title: State machine configuration
+    code: |
+        <root name="applicationContext">
+            <initialState id="initialState" static-ref="hex.ioc.parser.xml.state.mock.MockStateEnum.INITIAL_STATE">
+                <method-call name="addTransition">
+                    <argument static-ref="hex.ioc.parser.xml.state.mock.MockStateMessage.TRIGGER_NEXT_STATE"/>
+                    <argument static-ref="hex.ioc.parser.xml.state.mock.MockStateEnum.NEXT_STATE"/>
+                </method-call>
+                
+                <method-call name="addExitCommand">
+                    <argument type="Class" value="hex.ioc.parser.xml.state.mock.MockExitStateCommand"/>
+                    <argument ref="myModule"/>
+                </method-call>
+                
+            </initialState>
+            
+            <stateConfig id="stateConfig" type="hex.state.config.stateful.StatefulStateMachineConfig">
+                <argument ref="initialState"/>
+            </stateConfig>
+            
+            <module id="myModule" type="hex.ioc.parser.xml.state.mock.MockModuleWorkingWithStates">
+                <argument ref="stateConfig"/>
+            </module>
+        </root>
+    type: code-xml
+    
+  - title: Module listening service with adapter strategy and module injections
+    code: |
+        <root name="applicationContext">
+            <service id="myService" type="hex.ioc.parser.xml.mock.MockStubStatefulService"/>
+            
+            <module id="myModule" type="hex.ioc.parser.xml.mock.MockModuleWithServiceCallback">
+                <listen ref="myService">
+                    <event static-ref="hex.ioc.parser.xml.mock.MockStubStatefulService.INT_VO_UPDATE"
+                           method="onFloatServiceCallback"
+                           strategy="hex.ioc.parser.xml.mock.MockIntDividerEventAdapterStrategy"
+                           injectedInModule="true"/>
+                </listen>
+            </module>
+        </root>
+    type: code-xml
+    
+  - title: Redefining application context class
+    code: |
+        <root name="applicationContext" type="hex.ioc.parser.xml.context.mock.MockApplicationContext">
+            <test id="test" value="Hola Mundo"/>
+        </root>
+    type: code-xml
+    
+  - title: Listening application context states changes
+    code: |
+        <root name="applicationContext">
+            <state id="assemblingStart" ref="applicationContext.state.ASSEMBLING_START">
+                <enter command-class="hex.ioc.parser.xml.assembler.mock.MockStateCommand"/>
+            </state>
+            
+            <state id="objectsBuilt" ref="applicationContext.state.OBJECTS_BUILT">
+                <enter command-class="hex.ioc.parser.xml.assembler.mock.MockStateCommandWithModule" fire-once="true" context-owner="module"/>
+            </state>
+            
+            <state id="domainListenersAssigned" ref="applicationContext.state.DOMAIN_LISTENERS_ASSIGNED">
+                <enter command-class="hex.ioc.parser.xml.assembler.mock.MockStateCommand"/>
+            </state>
+            
+            <state id="methodsCalled" ref="applicationContext.state.METHODS_CALLED">
+                <enter command-class="hex.ioc.parser.xml.assembler.mock.MockStateCommand"/>
+            </state>
+            
+            <state id="modulesInitialized" ref="applicationContext.state.MODULES_INITIALIZED">
+                <enter command-class="hex.ioc.parser.xml.assembler.mock.MockStateCommand"/>
+            </state>
+            
+            <state id="assemblingEnd" ref="applicationContext.state.ASSEMBLING_END">
+                <enter command-class="hex.ioc.parser.xml.assembler.mock.MockStateCommandWithModule" fire-once="true" context-owner="anotherModule"/>
+            </state>
+            
+            <module id="module" type="hex.ioc.parser.xml.assembler.mock.MockModule" map-type="hex.module.IModule"/>
+            <module id="anotherModule" type="hex.ioc.parser.xml.assembler.mock.MockModule" map-type="hex.module.IModule"/>
+        </root>
+    type: code-xml
+    
+  - title: Conditional parsing
+    code: |
+        <root name="applicationContext">
+            <msg id="message" value="hello debug" if="debug,release"/>
+            <msg id="message" value="hello production" if="production"/>
+        </root>
+    type: code-xml
+    
+  - title:
+    code: |
+        applicationAssembler.addConditionalProperty ( ["production" => true, "debug" => false, "release" => false] );
+    type: code-haxe
+    
+  - title: Preprocessing
+    code: |
+        <root ${context}>
+            ${node}
+        </root>
+        
+        var preprocessor = new Preprocessor();
+        preprocessor.addProperty( "hello", "bonjour" );
+        preprocessor.addProperty( "contextName", 'applicationContext' );
+        preprocessor.addProperty( "context", 'name="$${contextName}"' );
+        preprocessor.addProperty( "node", '<msg id="message" value="$${hello}"/>' );
+    type: code-xml
+    
+  - title:
+    code: |
+        var preprocessor = new Preprocessor();
+        preprocessor.addProperty( "hello", "bonjour" );
+        preprocessor.addProperty( "contextName", 'applicationContext' );
+        preprocessor.addProperty( "context", 'name="$${contextName}"' );
+        preprocessor.addProperty( "node", '<msg id="message" value="$${hello}"/>' );
+    type: code-haxe
+    
+  - title: Include
+    code: |
+        <?xml version="1.0" encoding="utf-8" ?>
+        <root name="applicationContext">
+            <include file="../bin/otherContext.xml"/>
+            <include file="lib/anotherContext.xml"/>
+        </root>
+    type: code-xml
+    
+  - title: Read xml at compile time with preprocessing
+    code: |
+        var assembler = XmlCompiler.readXmlFile( "../context/preprocessor.xml", 
+        [   
+            "hello"         => "bonjour",
+            "contextName"   => 'applicationContext',
+            "context"       => 'name="${contextName}"',
+            "node"          => '<msg id="message" value="${hello}"/>' 
+        ] );
+    type: code-haxe
+    
+hexUnit:
+  - title: How to run framework tests inside the browser
+    code: |
+        var emu = new ExMachinaUnitCore();
+        emu.addListener( new BrowserUnitTestNotifier( "console" ) );
+        emu.addTest( HexMVCSuite );
+        emu.addTest( HexCoreSuite );
+        emu.addTest( HexInjectSuite );
+        emu.addTest( HexMachinaSuite );
+        emu.addTest( HexUnitSuite );
+        emu.run();
+    type: code-haxe
+    
+  - title: How to run tests with NodeJS (you can mix tests classes with suites)
+    code: |
+        var emu = new ExMachinaUnitCore();
+        emu.addListener( new ConsoleNotifier(false) );
+        emu.addTest( InjectorTest );
+        emu.addTest( HexCoreSuite );
+        emu.run();
+    type: code-haxe
+    
+  - title: How to test only one method
+    code: |
+        var emu = new ExMachinaUnitCore();
+        emu.addListener( new BrowserUnitTestNotifier( "console" ) );
+        emu.addTestMethod( InjectorTest, "get_instance_errors_for_unmapped_class" );
+        emu.run();
+    type: code-haxe
+    
+  - title: Suite example (you can mix tests classes with suites)
+    code: |
+        class AsyncSuite
+        {
+            @Suite("Async suite")
+            public var list : Array<Class<Dynamic>> = [AsyncCommandSuite, AsyncCommandTest];
+        }
+    type: code-haxe
+    
+  - title: Test example
+    code: |
+        class DomainTest
+        {
+            @Test( "Test 'name' property passed to constructor" )
+            public function testConstructor() : Void
+            {
+                var domain = new Domain( "testConstructor" );
+                Assert.equals( "testConstructor", domain.getName(), "'name' property should be the same passed to constructor" );
+            }
+            
+            @Test( "Test null 'name' value passed to constructor" )
+            public function testConstructorNullException() : Void
+            {
+                Assert.constructorCallThrows( NullPointerException, Domain, [], "" );
+            }
+            
+            @Test( "Test using twice the same 'name' value" )
+            public function testConstructorWithNameValues() : Void
+            {
+                var domain = new Domain( "testConstructorWithNameValues" );
+                Assert.constructorCallThrows( IllegalArgumentException, Domain, ["testConstructorWithNameValues"], "" );
+            }
+        }
+    type: code-haxe
+    
+  - title: Asynchronous test example
+    code: |
+        @Async( "Test every command was executed" )
+        public function testHasRunEveryCommand() : Void
+        {
+            this._macroExecutor.add( MockAsyncCommand );
+            Assert.failTrue( this._macroExecutor.hasRunEveryCommand, "'hasRunEveryCommand' should return false" );
+            this._macroExecutor.executeNextCommand();
+            Timer.delay( MethodRunner.asyncHandler( this._onTestHasRunEveryCommand ), 100 );
+        }
+        
+        private function _onTestHasRunEveryCommand() : Void
+        {
+            Assert.isTrue( this._macroExecutor.hasRunEveryCommand, "'hasRunEveryCommand' should return true" );
+        }
+    type: code-haxe
+    
+
+hexService:
+  - title: Simple HTTP Service
+    code: |
+        class GithubService extends HTTPService implements IGitService
+        {
+            public function new()
+            {
+                super();
+            }
+            
+            @PostConstruct
+            override public function createConfiguration() : Void
+            {
+                this.setConfiguration( new HTTPServiceConfiguration() );
+                this.setParser( new GithubParser() );
+            }
+            
+            public function getRepos() : Array<GitRepo> 
+            {
+                return this.getResult();
+            }
+            
+            public function setUser( user : String ) : Void
+            {
+                this.setURL( "https://api.github.com/users/" + user + "/repos" );
+            }
+            
+        }
+    type: code-haxe
+hexAnnotation:
+  - title: Simple example
+    code: |
+        @:autoBuild( annotation.AnnotationReader.readMetadata( "annotation.mock.IMockAnnotationContainer", [ "Inject", "Language", "Test", "PostConstruct", "Optional", "ConstructID" ] ) )
+        interface IMockAnnotationContainer
+        {
+            
+        }
+    type: code-haxe
+
+hexState:
+  - title: Simple example
+    code: |
+        // MessageTypes
+        this.logAsUser          = new MessageType( "onLogin" );
+        this.logAsGuest         = new MessageType( "onLogAsGuest" );
+        this.logout             = new MessageType( "onLogout" );
+        this.logAsAdministrator = new MessageType( "onLogAsAdministrator" );
+        
+        // States
+        this.anonymous      = new State( "anonymous" );
+        this.guest          = new State( "guest" );
+        this.user           = new State( "user" );
+        this.administrator  = new State( "administrator" );
+        
+        this._stateMachine  = new StateMachine( this.anonymous );
+        this._controller    = new StateController( this._injector, this._stateMachine );
+        
+        this.anonymous.addEnterCommand( DeleteAllCookiesMockCommand );
+        this.anonymous.addEnterCommand( DisplayAddBannerMockCommand );
+        this.anonymous.addTransition( this.logAsUser, this.user );
+        this.anonymous.addTransition( this.logAsGuest, this.guest );
+        
+        this.user.addEnterCommand( PrepareUserInfosMockCommand );
+        this.user.addEnterCommand( DisplayWelcomeMessageMockCommand );
+        this.user.addExitCommand( StoreUserActivityMockCommand );
+        this.user.addTransition( this.logAsAdministrator, this.administrator );
+        
+        this.guest.addEnterCommand( DisplayAddBannerMockCommand );
+        this.guest.addEnterCommand( InviteForRegisterMockCommand );
+        this.guest.addTransition( this.logAsUser, this.user );
+        this.guest.addTransition( this.logout, this.anonymous );
+        
+        this.administrator.addEnterCommand( GetAdminPrivilegesMockCommand );
+        this.administrator.addExitCommand( RemoveAdminPrivilegesMockCommand );
+        
+        this._stateMachine.addResetMessageType( [ this.logout ] );
+    type: code-haxe
+
+hexCore:
+  - title: Dispatcher example
+    code: |
+        //This event system is the easiest one to use
+        
+        var messageType = new MessageType( "onInit" );
+        var dispatcher = new Dispatcher<IMockListener>();
+        
+        var mockListener = new MockListener();
+        dispatcher.addListener( mockListener );
+        
+        var anotherListener = new MockListener();
+        dispatcher.addHandler( messageType, anotherListener, anotherListener.onMessage )
+        dispatcher.dispatch( messageType, ["something", 7] );
+    type: code-haxe
+
+  - title: EventDispatcher example
+    code: |
+        //This event system is the stricter than the previous one
+        
+        var dispatcher = new EventDispatcher<IEventListener, BasicEvent>();
+        dispatcher.addListener( new MockListener() );
+        dispatcher.dispatchEvent( new BasicEvent( "onEvent", this._dispatcher ) );
+    type: code-haxe
+    
+  - title: Simple logger example
+    code: |
+        Logger.getInstance().setLevel( LogLevel.DEBUG );
+        Logger.getInstance().addListener( new TraceLayout() );
+        Logger.DEBUG( "hola mundo " );
+    type: code-haxe
+    
+  - title: Logger example with proxy layout
+    code: |
+        var proxy = new LogProxyLayout();
+        proxy.addListener( new SimpleBrowserLayout() );
+        
+        Logger.INFO( "hola mundo ", MyDomain.DOMAIN );
+        proxy.filter( LogLevel.INFO, MyDomain.DOMAIN );
+    type: code-haxe
+    
+  - title: Locator example
+    code: |
+        class MyLocator extends Locator<String, ISomething>
+        {
+            public function new( builderFactory : BuilderFactory )
+            {
+                super();
+            }
+            
+            override function _dispatchRegisterEvent( key : String, element : ISomething ) : Void 
+            {
+                this._dispatcher.dispatch( LocatorMessage.REGISTER, [ key, element ] );
+            }
+            
+            override function _dispatchUnregisterEvent( key : String ) : Void 
+            {
+                this._dispatcher.dispatch( LocatorMessage.UNREGISTER, [ key ] );
+            }
+        }
+    type: code-haxe
