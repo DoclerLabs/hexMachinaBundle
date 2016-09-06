@@ -11,8 +11,7 @@
   link: /docs/tutorials
 
 - name: API documentation
-  link: http://hexmachina.org/docs/
-  external: true
+  link: /docs/api/
 
 - name: Tools & Libraries
   link: /docs/tools
