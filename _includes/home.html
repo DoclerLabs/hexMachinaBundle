@@ -123,28 +123,6 @@ class MyTest {
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexService"><h6>hexService</h6></a>
 				<p class="text-small">Service layer extension for <b>hexMVC</b> to separate service communications. It has all typical predefined service behaviors like: configuration, success, fail, cancel, timeout, etc.</p>
 				<textarea class="code-haxe cm-hexmachina">
-class MyService extends AsyncStatelessService implements IMyService {
-	public function new() {
-		super();
-	}
-	
-	override public function call() : Void {
-		//do something
-		this._ed.dispatch ( StatelessServiceMessage.FAIL );
-	}
-	
-	@PostConstruct
-	override public function createConfiguration() : Void {
-		this.setConfiguration( new MyServiceConfiguration() );
-		this.setParser( new MyParser() );
-	}
-	
-	public function getSomething() : Array<MyData> {
-		return this.getResult();
-	}
-}
-
-//...
 var service = new MyService ();
 service.addHandler (StatelessServiceMessage.COMPLETE, this, function () {
 	trace ("complete");
@@ -154,29 +132,13 @@ service.addHandler (StatelessServiceMessage.COMPLETE, this, function () {
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexAnnotation"><h6>hexAnnotation</h6></a>
 				<p class="text-small">Easy-to-use utilities for reading and writing @annotation data.</p>
 				<textarea class="code-haxe cm-hexmachina">
-@:autoBuild( hex.annotation.AnnotationReader.readMetadata( IMyAnnotations, ["Language", "Test"] ) )
-interface IMyAnnotation 
-{
-}
-
 class MyAnnotations implements IMyAnnotation {
-	@Test( "yes" )
+	@MyAnnotation( "yes" )
 	var annotated : String;
 	
 	@Language( "en" )
 	function doTest( i : Int ) : Void {
 	}
-	
-	@WontBeParsed
-	function nonParsable() : Void {
-	}
-}
-
-//...
-var annotationProvider = new ClassAnnotationDataProvider( IMyAnnotation );
-var data = annotationProvider.getClassAnnotationData( MyAnnotations );
-for (method in data.methods) {
-	trace (method.annotationDatas);
 }</textarea>
 			</div>
 		</div>
@@ -186,7 +148,6 @@ for (method in data.methods) {
 				<p class="text-small">Powerful easy-to-use StateMachina system based on Martin Dowler’s implementation. It saves you from a lot of issue with invalid states of your application.</p>
 				<textarea class="code-haxe cm-hexmachina">
 var logAsUser = new MessageType( "onLogin" );
-var logout = new MessageType( "onLogout" );
 
 var anonymous = new State( "anonymous" );
 var user = new State( "user" );
@@ -194,14 +155,9 @@ var user = new State( "user" );
 var stateMachine = new StateMachine( anonymous );
 var controller = new StateController( injector, stateMachine );
 
-anonymous.addEnterCommand( DeleteCookiesCommand );
 anonymous.addTransition( logAsUser, user);
 
 user.addEnterCommand( DisplayWelcomeCommand );
-user.addExitCommand( SaveUserInfoCommand );
-user.addTransition( logout, anonymous );
-
-stateMachine.addResetMessageType( [ logout ] );
 
 controller.handleMessage( logAsUser );</textarea>
 			</div>
@@ -217,14 +173,10 @@ Logger.DEBUG( "test" );
 
 var onTest = new MessageType( "onTest" );
 var dispatcher = new Dispatcher<ITestListener>();
-var listener = new TestListener();
-dispatcher.addListener( listener );
 dispatcher.addHandler( onTest, this, function () {
 	trace( "onTest" )
 } );
-dispatcher.dispatch( onTest, [] );
-
-trace( MacroUtil.classImplementsInterface( HashMap, IHashMap ) );</textarea>
+dispatcher.dispatch( onTest, [] );</textarea>
 			</div>
 		</div>
 		<div class="more">
@@ -288,7 +240,7 @@ trace( MacroUtil.classImplementsInterface( HashMap, IHashMap ) );</textarea>
 	});
 	$('.carousel-section').parallax({imageSrc: '{{site.baseurl}}/img/pattern-cover.jpg'});
 	$(function () {
-		new app.ReadMore('.features');
+		new app.ReadMore('.features', "See all Features »", "« See less Features");
 	});
 	particlesJS.load('particles-js', 'assets/particles.json', function() {});
 </script>

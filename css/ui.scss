@@ -573,6 +573,16 @@ body {
 			}
 		}
 	}
+	.code-snippets {
+		.read-more {
+			display: inline-block;
+			color: $c3;
+			font-size: 20px;
+			font-weight: 700;
+			margin-bottom: 20px;
+			cursor: pointer;
+		}
+	}
 }
 .threads {
 	padding: 0 10px;
