@@ -78,9 +78,7 @@ private class MyModuleCommandConfig extends StatelessCommandConfig {
 
 &lt;service id="myService" type="myproject.service.myservice.MyService"&gt;
 	&lt;property name="myprop" value="15" /&gt;
-&lt;/service&gt;
-</textarea>
-
+&lt;/service&gt;</textarea>
 			</div>
 		</div>
 		<div class="row">
@@ -120,38 +118,48 @@ class MyTest {
 }</textarea>
 			</div>
 		</div>
-		<div class="row reveal">
+		<div class="row reveal hide">
 			<div class="col-lg-6 col-left">
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexService"><h6>hexService</h6></a>
 				<p class="text-small">Service layer extension for <b>hexMVC</b> to separate service communications. It has all typical predefined service behaviors like: configuration, success, fail, cancel, timeout, etc.</p>
 				<textarea class="code-haxe cm-hexmachina">
-	for (name in people.keys()) {
-		var job = people[name];
-		trace('$name does $job for a living!');
-	}
-				</textarea>
+var service = new MyService ();
+service.addHandler (StatelessServiceMessage.COMPLETE, this, function () {
+	trace ("complete");
+});</textarea>
 			</div>
 			<div class="col-lg-6 col-right">
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexAnnotation"><h6>hexAnnotation</h6></a>
-				<p class="text-small">Abstract @annotation based dependency provider, where you can define your own classes that will provide dependencies on construction.</p>
+				<p class="text-small">Easy-to-use utilities for reading and writing @annotation data.</p>
 				<textarea class="code-haxe cm-hexmachina">
-	for (name in people.keys()) {
-		var job = people[name];
-		trace('$name does $job for a living!');
+class MyAnnotations implements IMyAnnotation {
+	@MyAnnotation( "yes" )
+	var annotated : String;
+	
+	@Language( "en" )
+	function doTest( i : Int ) : Void {
 	}
-				</textarea>
+}</textarea>
 			</div>
 		</div>
-		<div class="row reveal">
+		<div class="row reveal hide">
 			<div class="col-lg-6 col-left">
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexState"><h6>hexState</h6></a>
 				<p class="text-small">Powerful easy-to-use StateMachina system based on Martin Dowler’s implementation. It saves you from a lot of issue with invalid states of your application.</p>
 				<textarea class="code-haxe cm-hexmachina">
-	for (name in people.keys()) {
-		var job = people[name];
-		trace('$name does $job for a living!');
-	}
-				</textarea>
+var logAsUser = new MessageType( "onLogin" );
+
+var anonymous = new State( "anonymous" );
+var user = new State( "user" );
+
+var stateMachine = new StateMachine( anonymous );
+var controller = new StateController( injector, stateMachine );
+
+anonymous.addTransition( logAsUser, user);
+
+user.addEnterCommand( DisplayWelcomeCommand );
+
+controller.handleMessage( logAsUser );</textarea>
 			</div>
 			<div class="col-lg-6 col-right">
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexCore"><h6>hexCore</h6></a>
@@ -159,11 +167,16 @@ class MyTest {
 
 </p>
 				<textarea class="code-haxe cm-hexmachina">
-	for (name in people.keys()) {
-		var job = people[name];
-		trace('$name does $job for a living!');
-	}
-				</textarea>
+Logger.getInstance().setLevel( LogLevel.DEBUG );
+Logger.getInstance().addListener( new TraceLayout() );
+Logger.DEBUG( "test" );
+
+var onTest = new MessageType( "onTest" );
+var dispatcher = new Dispatcher<ITestListener>();
+dispatcher.addHandler( onTest, this, function () {
+	trace( "onTest" )
+} );
+dispatcher.dispatch( onTest, [] );</textarea>
 			</div>
 		</div>
 		<div class="more">
@@ -178,7 +191,7 @@ class MyTest {
 			<div class="banner-text">
 				<h4>“All what we did based on real needs, not some artificial coding perversion. We always faced the problem first, and found a solution.„</h4>
 				<p>Balazs Zubak</p>
-				<span>Software Architent fom Hungary</span>
+				<span>Software Architect fom Hungary</span>
 			</div>
 		</div>
 		<div class="gallery-cell">

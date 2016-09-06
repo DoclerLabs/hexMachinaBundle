@@ -1,0 +1,87 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+footer {
+	padding-top: 60px;
+	.footer-above {
+		position: relative;
+		background: #1a467f;
+		background: -moz-linear-gradient(top,  #1a467f 0%, #2561ae 50%);
+		background: -webkit-linear-gradient(top,  #1a467f 0%,#2561ae 50%);
+		background: linear-gradient(to bottom,  #1a467f 0%,#2561ae 50%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1a467f', endColorstr='#2561ae',GradientType=0 );
+		overflow: hidden;
+		.banner-text {
+			text-align: center;
+			position: relative;
+			z-index: 1;
+			padding: 78px 0;
+			.btn {
+				margin-top: 20px;
+			}
+		}
+		img {
+			position: absolute;
+			width: 100%;
+			top: 0;
+			left: 0;
+			opacity: 0.3;
+			display: none;
+		}
+	}
+	.footer-below {
+		padding: 46px 0 64px;
+		background: url(../img/hex-machina-footer-bg.jpg) top center;
+		text-align: left;
+		.row {
+			div:first-child {
+				text-align: right;
+				nav {
+					text-align: right;
+				}
+			}
+			.col-roadmap {
+				text-align: center !important;
+			}
+			.col-facebook {
+				.nav {
+					text-align: right;
+				}
+			}
+		}
+		img {
+			display: block;
+			margin: 26px auto 0;
+			width: 160px;
+		}
+		.nav {
+			display: inline-block;
+			text-align: left;
+			li {
+				padding: 2px 0 3px;
+				a {
+					padding: 0;
+					color: #aacfff;
+					display: inline;
+					&:hover {
+						background: none;
+						color: #ffffff;
+					}
+				}
+			}
+		}
+	}
+	i {
+		opacity: 0.6;
+		-webkit-transition: all 0.2s ease;
+		-moz-transition: all 0.2s ease;
+		-ms-transition: all 0.2s ease;
+		-o-transition: all 0.2s ease;
+		transition: all 0.2s ease;
+		font-size: 30px;
+		color: #aacfff;
+		&:hover {
+			opacity: 1;
+		}
+	}
+}

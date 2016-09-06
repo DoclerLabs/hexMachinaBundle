@@ -2,70 +2,134 @@
 layout: docs
 title: "Code Cookbook"
 ---
-<h3>hexMVC<span class="anchor" id="hexMVC"></span></h3>
-<p>MVC implementation for writing individual modules with the classical Model-View-Controller structural pattern. Lightweight experimental MVP is provided as well.</p>
-<textarea class="code-haxe cm-s-hexmachina">
-	class Test {
-		static function main() {
-			var people = [
-				"Elizabeth" => "Programming",
-				"Joel" => "Design"
-			];
-			for (name in people.keys()) {
-				var job = people[name];
-				trace('$name does $job for a living!');
-			}
-		}
-	}
-</textarea>
+<section class="code-snippets">
+	<h3>hexMVC<span class="anchor" id="hexMVC"></span></h3>
+	<p>MVC implementation for writing individual modules with the classical Model-View-Controller structural pattern. Lightweight experimental MVP is provided as well.</p>
+	<section class="reveal hide">
+		{% for snippet in site.data.cookbook.hexMVC %}
+		<br>
+		{% if snippet.title != null %}<p class="text-small">{{ snippet.title }}</p>{% endif %}
+		<textarea class="{{ snippet.type }} cm-s-hexmachina">
+{{ snippet.code | xml_escape | rstrip }}</textarea>
+		{% endfor %}
+	</section>
+	<a class="read-more">Show more &raquo;</a><br><br><br>
+</section>
 
-<h3>hexInject<span class="anchor" id="hexInject"></span></h3>
-<p>Powerful and easy-to-use Dependency Injection system based on @annotations. It supports property, method and constructor injections predefined in injector mappings.mocking and assertion system. FlexUnit and JUnit like syntax.</p>
-<textarea class="code-haxe cm-s-hexmachina">
-	class Test {
-		static function main() {
-			var people = [
-				"Elizabeth" => "Programming",
-				"Joel" => "Design"
-			];
-			for (name in people.keys()) {
-				var job = people[name];
-				trace('$name does $job for a living!');
-			}
-		}
-	}
-</textarea>
+<section class="code-snippets">
+	<h3>hexIoC<span class="anchor" id="hexIoC"></span></h3>
+	<p>Inverion of Control system to make multi-modular applications. You can have an extremely powerful DSL layer (Domain Specific Language), where you can connect togethet any modules, components and describe any dependency, behavior between them.</p>
+	<section class="reveal hide">
+		{% for snippet in site.data.cookbook.hexIoC %}
+		<br>
+		{% if snippet.title != null %}<p class="text-small">{{ snippet.title }}</p>{% endif %}
+		<textarea class="{{ snippet.type }} cm-s-hexmachina">
+{{ snippet.code | xml_escape | rstrip }}</textarea>
+		{% endfor %}
+	</section>
+	<a class="read-more">Show more &raquo;</a><br><br><br>
+</section>
 
-<h3>hexIoC<span class="anchor" id="hexIoC"></span></h3>
-<p>Extendable UnitTest runner with the basic assertions. It works well together with any mocking and assertion system. FlexUnit and JUnit like syntax.</p>
-<textarea class="code-haxe cm-s-hexmachina">
-	class Test {
-		static function main() {
-			var people = [
-				"Elizabeth" => "Programming",
-				"Joel" => "Design"
-			];
-			for (name in people.keys()) {
-				var job = people[name];
-				trace('$name does $job for a living!');
-			}
-		}
-	}
-</textarea>
+<section class="code-snippets">
+	<h3>hexInject<span class="anchor" id="hexInject"></span></h3>
+	<p>Powerful and easy-to-use Dependency Injection system based on @annotations. It supports property, method and constructor injections predefined in injector mappings.</p>
+	<section class="reveal hide">
+		{% for snippet in site.data.cookbook.hexInject %}
+		<br>
+		{% if snippet.title != null %}<p class="text-small">{{ snippet.title }}</p>{% endif %}
+		<textarea class="{{ snippet.type }} cm-s-hexmachina">
+{{ snippet.code | xml_escape | rstrip }}</textarea>
+		{% endfor %}
+	</section>
+	<a class="read-more">Show more &raquo;</a><br><br><br>
+</section>
 
-<h3>hexUnit<span class="anchor" id="hexUnit"></span></h3>
-<p>Extendable UnitTest runner with the basic assertions. It works well together with any mocking and assertion system. FlexUnit and JUnit like syntax.</p>
-<textarea class="code-haxe cm-s-hexmachina">
-	class Test {
-		static function main() {
-			var people = [
-				"Elizabeth" => "Programming",
-				"Joel" => "Design"
-			];
-			for (name in people.keys()) {
-				var job = people[name];
-				trace('$name does $job for a living!');
+<section class="code-snippets">
+	<h3>hexUnit<span class="anchor" id="hexUnit"></span></h3>
+	<p>Extendable UnitTest runner with the basic assertions. It works well together with any mocking and assertion system. FlexUnit and JUnit like syntax.</p>
+	<section class="reveal hide">
+		{% for snippet in site.data.cookbook.hexUnit %}
+		<br>
+		{% if snippet.title != null %}<p class="text-small">{{ snippet.title }}</p>{% endif %}
+		<textarea class="{{ snippet.type }} cm-s-hexmachina">
+{{ snippet.code | xml_escape | rstrip }}</textarea>
+		{% endfor %}
+	</section>
+	<a class="read-more">Show more &raquo;</a><br><br><br>
+</section>
+
+<section class="code-snippets">
+	<h3>hexService<span class="anchor" id="hexService"></span></h3>
+	<p>Service layer extension for <b>hexMVC</b> to separate service communications. It has all typical predefined service behaviors like: configuration, success, fail, cancel, timeout, etc.</p>
+	<section class="reveal hide">
+		{% for snippet in site.data.cookbook.hexService %}
+		<br>
+		{% if snippet.title != null %}<p class="text-small">{{ snippet.title }}</p>{% endif %}
+		<textarea class="{{ snippet.type }} cm-s-hexmachina">
+{{ snippet.code | xml_escape | rstrip }}</textarea>
+		{% endfor %}
+	</section>
+	<a class="read-more">Show more &raquo;</a><br><br><br>
+</section>
+
+<section class="code-snippets">
+	<h3>hexAnnotation<span class="anchor" id="hexAnnotation"></span></h3>
+	<p>Easy-to-use utilities for reading and writing @annotation data.</p>
+	<section class="reveal hide">
+		{% for snippet in site.data.cookbook.hexAnnotation %}
+		<br>
+		{% if snippet.title != null %}<p class="text-small">{{ snippet.title }}</p>{% endif %}
+		<textarea class="{{ snippet.type }} cm-s-hexmachina">
+{{ snippet.code | xml_escape | rstrip }}</textarea>
+		{% endfor %}
+	</section>
+	<a class="read-more">Show more &raquo;</a><br><br><br>
+</section>
+
+<section class="code-snippets">
+	<h3>hexState<span class="anchor" id="hexState"></span></h3>
+	<p>Powerful easy-to-use StateMachina system based on Martin Dowler’s implementation. It saves you from a lot of issue with invalid states of your application.</p>
+	<section class="reveal hide">
+		{% for snippet in site.data.cookbook.hexState %}
+		<br>
+		{% if snippet.title != null %}<p class="text-small">{{ snippet.title }}</p>{% endif %}
+		<textarea class="{{ snippet.type }} cm-s-hexmachina">
+{{ snippet.code | xml_escape | rstrip }}</textarea>
+		{% endfor %}
+	</section>
+	<a class="read-more">Show more &raquo;</a><br><br><br>
+</section>
+
+<h3>hexCore<span class="anchor" id="hexCore"></span></h3>
+<p>Common core libraries that everyone needs in everyday developments like: exceptions, dispatcher, logging system, utils, etc.</p>
+<section class="code-snippets">
+	<section class="reveal hide">
+		{% for snippet in site.data.cookbook.hexCore %}
+		<br>
+		{% if snippet.title != null %}<p class="text-small">{{ snippet.title }}</p>{% endif %}
+		<textarea class="{{ snippet.type }} cm-s-hexmachina">
+{{ snippet.code | xml_escape | rstrip }}</textarea>
+		{% endfor %}
+	</section>
+	<a class="read-more">Show more &raquo;</a><br><br><br>
+</section>
+
+<script src="{{site.baseurl}}/lib/jquery/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="{{site.baseurl}}/lib/app.js"></script>
+<script type="text/javascript" src="{{site.baseurl}}/lib/ReadMore.js"></script>
+<script type="text/javascript">
+	$(function () {
+		var snippets = $('.code-snippets');
+		
+		$.each(snippets, function (index, element) {
+			var rm = new app.ReadMore(element, "Show more »", "« Show less");
+			rm.onReadLess = function (rm) {
+				//var anchor = rm.hiddenItems.prop('id');
+				//document.getElementById(anchor).scrollIntoView();
+				rm.showMoreBtn[0].scrollIntoView();
 			}
-		}
-	}
-</textarea>
+		});
+	});
+	
+	
+</script>

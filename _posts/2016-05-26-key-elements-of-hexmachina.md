@@ -1,0 +1,97 @@
+---
+published: true
+layout: post
+title: Key elements of the framework
+category: Design
+img: /img/blog/keys.jpg
+tags: [feature]
+---
+Without the detailed descriptions, here are the key featured elements of hexMachina, that gives you great flexibility to fulfill your needs according to different problems.
+
+ - Module 
+	 - Model layer 
+		 - Model 
+		 - ModelDispatcher 
+		 - Model Interfaces
+			 - IModel
+			 - IModelRO
+			 - IModelListener
+	 - View layer
+		 - ViewHelper
+		 - View (implements IView)
+		 - ViewHelperManager
+	 - Controller layer 
+		 - Command 
+		 - Order
+		 - AsyncCommand 
+		 - Payloads/PayloadEvent
+		 - Macro 
+			 - MacroExecutor 
+		 - Guard
+		 - Controller/s
+		 - FrontController
+			 - CommandExecutor 
+	 - Service layer 
+		 - Stateful 
+		 - Stateless
+		 - CompositeDispatcher 
+	 - Configuration 
+		 - Stateless 
+			 - ModelConfiguration
+			 - CommandConfiguration 
+			 - ModuleConfiguration
+		 - Stateful 
+			 - MappingConfiguration 
+			 - ServiceLocator
+			 - ApplicationContext 
+ - DSL
+	 - Instantiation 
+	 - Properties 
+	 - Method call 
+	 - MessageType registration 
+	 - Injection
+		 - by DSL 
+		 - by Injector 
+	- Implementation
+		- Compiler
+			- XmlCompiler
+			- CompileTimeApplicationAssembler
+			- CompileTimeContextFactory
+			- Factories
+		- Reader
+			- XmlReader
+			- ApplicationAssembler
+			- ContextFactory
+			- Factories
+	 - XML description 
+		 - Flat structure 
+		 - Instantiation
+		 - Properties 
+		 - Method call 
+		 - MessageType registration 
+		 - Map to injector 
+		 - Static referencing 
+		 - States
+		 - Conditional Parsing
+		 - Pre-processing
+	 - Communication 
+		 - Direct communication 
+		 - Strategy
+			 - AdapterStrategy 
+			 - MacroStrategy 
+			 - EventProxy
+			 - Event trigger
+		 - ApplicationDomainDispatcher 
+ - Injector
+	 - Property injection
+	 - Constructor injection
+	 - Method injection
+ - AnnotationProvider aka 'gipsy injections'
+ - Two event systems with many implementations
+ - Logging API
+ - 
+ - StateMachine
+ 	- Controller
+ 	- Enter/exit commands
+ 	- Execution scope (context or module)
+ 	- Custom states from a context

@@ -1,8 +1,10 @@
 <div class="box col-lg-6 col-md-12 col-sm-12 col-xs-12">
 	<div class="box-content">
+		{% if post.img %}
 		<a href="{{post.url | prepend: site.baseurl }}">
-			<div class="post-image" style="background-image:url({% if post.img %}{{ post.img | prepend: site.baseurl }}{% else %}{{site.baseurl}}/img/blog/hexmachina-welcome.jpg{% endif %})"></div>
+			<div class="post-image" style="background-image:url({{ post.img | prepend: site.baseurl }})"></div>
 		</a>
+		{% endif %}
 		<div class="text-content">
 			<time>{{ post.date | date_to_long_string }}</time>
 			{% assign categoryname = post.category | slugify %}

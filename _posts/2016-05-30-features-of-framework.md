@@ -1,10 +1,9 @@
 ---
 layout: post
 title:  "Features of the framework"
-date:   2016-05-30
-img: /img/blog/hexmachina-welcome.jpg
-category: Tutorial
-tags: [developers, mvc, features]
+img: /img/blog/features-of-the-framework.jpg
+category: Design
+tags: [feature]
 ---
 Including but not limited to, here are the main cornerstone features of the framework. If you are interested in more details check the documentations.
 

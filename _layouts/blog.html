@@ -62,31 +62,29 @@ class: blog
 					{% for post in paginator.posts %}
 						{% include blog-post.html %}
 					{% endfor %}
-					{% if paginator.total_pages > 1 %}
-						<div class="pagination col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							<div class="col-lg-4 col-md-4 col-sm-3 col-xs-3">
-								{% if paginator.previous_page %}
-									<a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="previous"><span class="arrow-left"></span><span class="hide-on-mobile">Previous</span></a>
-								{% endif %}
-							</div>
-							<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 page-numbers">
-								{% for page in (1..paginator.total_pages) %}
-									{% if page == paginator.page %}
-										<span class="page-num active">{{ page }}</span>
-									{% elsif page == 1 %}
-										<a class="page-num xxx" href="{{ site.baseurl }}/blog">{{ page }}</a>
-									{% else %}
-										<a class="page-num" href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-									{% endif %}
-								{% endfor %}
-							</div>
-							<div class="col-lg-4 col-md-4 col-sm-3 col-xs-3 next-page">
-								{% if paginator.next_page %}
-									<a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="next"><span class="hide-on-mobile">Next</span><span class="arrow-right"></span></a>
-								{% endif %}
-							</div>
+					<div class="pagination col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="col-lg-4 col-md-4 col-sm-3 col-xs-3">
+							{% if paginator.previous_page %}
+								<a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="previous"><span class="arrow-left"></span><span class="hide-on-mobile">Previous</span></a>
+							{% endif %}
 						</div>
-					{% endif %}
+						<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 page-numbers">
+							{% for page in (1..paginator.total_pages) %}
+								{% if page == paginator.page %}
+									<span class="page-num active">{{ page }}</span>
+								{% elsif page == 1 %}
+									<a class="page-num xxx" href="{{ site.baseurl }}/blog">{{ page }}</a>
+								{% else %}
+									<a class="page-num" href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+								{% endif %}
+							{% endfor %}
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-3 col-xs-3 next-page">
+							{% if paginator.next_page %}
+								<a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="next"><span class="hide-on-mobile">Next</span><span class="arrow-right"></span></a>
+							{% endif %}
+						</div>
+					</div>
 				{% endif %}
 			</div>
 			{% include categories-tags.html %}
