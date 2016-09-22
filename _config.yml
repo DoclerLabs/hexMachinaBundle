@@ -9,7 +9,7 @@
 title: HEXMACHINA - a powerful multi-modular MVC framework written in Haxe
 email: info@hexmachina.org
 description: A powerful multi-modular MVC+S system written in Haxe
-#baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/hexMachina" # the subpath of your site, e.g. /blog
 url: "http://hexmachina.org/" # the base hostname & protocol for your site
 twitter_username: _hexmachina
 github_username:  DoclerLabs
