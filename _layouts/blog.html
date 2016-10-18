@@ -62,6 +62,7 @@ class: blog
 					{% for post in paginator.posts %}
 						{% include blog-post.html %}
 					{% endfor %}
+					{% if paginator.total_pages > 1 %}
 					<div class="pagination col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div class="col-lg-4 col-md-4 col-sm-3 col-xs-3">
 							{% if paginator.previous_page %}
@@ -85,6 +86,7 @@ class: blog
 							{% endif %}
 						</div>
 					</div>
+					{% endif %}
 				{% endif %}
 			</div>
 			{% include categories-tags.html %}

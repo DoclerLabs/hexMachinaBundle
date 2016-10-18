@@ -3,4 +3,81 @@ layout: docs
 title: "Tools & Libraries"
 ---
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<h2>FlashDevelop Package</h2>
+<p>The FlashDevelop package contains some code templates, plugins and a project template for hexMachina:</p>
+<br>
+
+<h3>Project template</h3>
+<p>The project template allows you to create a new hexMachina project within seconds in FlashDevelop.</p>
+<br>
+
+<h3>Code templates</h3>
+<p>The code templates help to reduce boilerplate code and allow to automatically generate Modules, Models, IViews and much more directly in FlashDevelop.</p>
+<br>
+
+<h3>hexUnit plugin</h3>
+<p>The hexUnit plugin adds unit testing within FlashDevelop. This way, you can run your unit tests within your favourite IDE and look at the nicely formatted results.</p>
+<p><img style="width: auto;" src="{{site.baseurl}}/img/docs/tools/hexunit-screenshot.png"></img></p>
+<br>
+
+<h3>DSLCompletion plugin</h3>
+<p>The DSLCompletion plugin allows many things that work within Haxe code to work in DSL too.</p>
+<p><strong>Features:</strong></p>
+<p>Auto-completion type in DSL</p>
+<p><img style="width: auto;" src="{{site.baseurl}}/img/docs/tools/Autocomplete.gif"></img></p>
+<p>Auto-import haxe classes in DSL</p>
+<p><img style="width: auto;" src="{{site.baseurl}}/img/docs/tools/AutoImport.gif"></img></p>
+<p>Goto haxe class definition from DSL</p>
+<p><img style="width: auto;" src="{{site.baseurl}}/img/docs/tools/GotoClass.gif"></img></p>
+<p>Goto method-call definition from DSL</p>
+<p><img style="width: auto;" src="{{site.baseurl}}/img/docs/tools/GotoMethodCall.gif"></img></p>
+<p>Goto static-ref definition from DSL</p>
+<p><img style="width: auto;" src="{{site.baseurl}}/img/docs/tools/GotoStaticRef.gif"></img></p>
+<p>Open DSL file from haxe class</p>
+<p><img style="width: auto;" src="{{site.baseurl}}/img/docs/tools/GotoFileFromHaxe.gif"></img></p>
+<p>Open DSL file from another DSL</p>
+<p><img style="width: auto;" src="{{site.baseurl}}/img/docs/tools/GotoFile.gif"></img></p>
+<br>
+<h3>Yeoman plugin</h3>
+<p>The Yeoman plugin allows to run Yeoman generators from within FlashDevelop. To use it, just right click any folder and select "Add" -> "New Yeoman File".</p>
+<p>After that, you should be asked to select a generator.</p>
+<br>
+<div class="info-box">
+	<h3>Info</h3>
+	<p>The FlashDevelop Package is currently not publicly available. It will be publicized on the <a href="https://github.com/DoclerLabs" target="_blank">DoclerLabs Github</a>.</p>
+</div>
+<br>
+<br>
+
+<h2>Yeoman templates</h2>
+<p>Also, there is a Yeoman generator available to ease creating new projects:</p>
+<br>
+
+<h3>Installation</h3>
+<p>First of all, you need Node.js and npm (automatically installed with Node.js). After that, you just install "yo":</p>
+<pre><code>npm install -g yo</code></pre>
+<p>The last thing you have to install is the generator itself, so just run:</p>
+<pre><code>npm install -g https://github.com/DoclerLabs/generator-hex.git</code></pre>
+<br>
+
+<h3>Usage</h3>
+<p>Just run one of the following commands in a terminal / console window (or even better, from within FlashDevelop using the Yeoman plugin) and follow the instructions.</p>
+
+<p><strong>Generating a project</strong></p>
+<p>If you want to generate a project, you have two options:</p>
+<div class="container">
+	<p class="text-small">1. HaxeDevelop project: <pre><code>yo hex:haxedevelop</code></pre></p>
+	<p class="text-small">2. Generic Haxe project: <pre><code>yo hex:project</code></pre></p>
+</div>
+
+<p><strong>Generating files</strong></p>
+<p>You can generate the following files within an existing project:</p>
+<div class="container">
+	<p class="text-small">Module: <pre><code>yo hex:module</code></pre></p>
+	<p class="text-small">Model: <pre><code>yo hex:model</code></pre></p>
+	<p class="text-small">ViewHelper: <pre><code>yo hex:viewhelper</code></pre></p>
+</div>
+<div class="info-box">
+	<h3>FlashDevelop Package</h3>
+	<p>The Yeoman templates are configured to work best, when run from the FlashDevelop package.</p>
+</div>

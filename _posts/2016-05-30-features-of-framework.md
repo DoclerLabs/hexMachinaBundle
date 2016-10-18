@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Features of the framework"
-img: /img/blog/features-of-the-framework.jpg
+image: /img/blog/features-of-the-framework.jpg
 category: Design
 tags: [feature]
 ---
@@ -13,7 +13,7 @@ MVC implementation for writing individual modules with the classical Model-View-
 
 <h3>hexIoC</h3>
 
-Inverion of Control system to make multi-modular applications. With this layer you can have an extremely powerful DSL layer (Domain Specific Language), where you can connect togethet any modules, componends of your system and make them working togethet.
+Inversion of Control system to make multi-modular applications. With this layer you can have an extremely powerful DSL layer (Domain Specific Language), where you can connect togethet any modules, componends of your system and make them working togethet.
 
 <h3>hexService</h3>
 

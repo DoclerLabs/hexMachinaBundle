@@ -110,3 +110,9 @@ body {
 		color: #1a467f;
 	}
 }
+.reveal {
+	&.hide {
+		height: 0;
+		overflow: hidden;
+	}
+}

@@ -5,7 +5,11 @@
 			<h4><span>Try it!</span> Install from command line</h4>
 			<p class="code">haxelib install hexmachina</p>
 		</div>
-		<button type="button" class="btn action-btn">Download hexMachina v0.3.0</button>
+		{% for downloads in site.data.downloads limit: 1 %}
+		<a href="{{ downloads.link }}">
+			<button type="button" class="btn action-btn">{{ downloads.name }}</button>
+		</a>
+		{% endfor %}
 	</div>
 	<div id="particles-js"></div>
 </section>
@@ -44,109 +48,115 @@
 			<div class="col-lg-12">
 				<h2>Features of the framework</h2>
 				<hr class="divider"/>
-				<p>Including but not limited to, here are the main cornerstone features of the framework. If you are interested in more details check the documentations.</p>
+				<p>hexMachina relies on a smart mix beetween declarative and imperative programming. The main concept is to split your application codebase in two distinct parts. The first one is made from resusable micro-applications called components developed with haxe language. The second one is driven by DSL for describing your components assembling and your application behaviors.</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6 col-left">
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexMVC"><h6>hexMVC</h6></a>
 				<p class="text-small">MVC implementation for writing individual modules with the classical Model-View-Controller structural pattern.</p>
-				<textarea class="code-haxe cm-hexmachina">
-class MyModule extends Module implements IMyModule {
-	public function new( view:IMyView ) {
-		this._addStatelessConfigClasses([MyModuleCommandConfig]);
+{% highlight java %}
+class MyModule extends Module {
+    public function new( view:IMyView ) {
+        this._addStatelessConfigClasses([MyModuleCommandConfig]);
         this.buildViewHelper(MyViewHelper, view);
-	}
+    }
 }
 
 private class MyModuleCommandConfig extends StatelessCommandConfig {
     override public function configure() {
-		this.map(MyModuleMessage.MODULE_READY, InitModuleMacro).once();
-        this.map(MyModuleMessage.GET_NEWS, GetNewsCommand);s
-	}
-}</textarea>
+        this.map(MyModuleMessage.MODULE_READY, InitModuleMacro).once();
+        this.map(MyModuleMessage.GET_NEWS, GetNewsCommand);
+    }
+}
+{% endhighlight %}
 			</div>
 			<div class="col-lg-6 col-right">
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexIoC"><h6>hexIoC</h6></a>
-				<p class="text-small">Inverion of Control system to make multi-modular applications. You can have an extremely powerful DSL layer (Domain Specific Language), where you can connect togethet any modules, components and describe any dependency, behavior between them.</p>
-				<textarea class="code-xml cm-hexmachina">
-&lt;module id="myModule" type="myproject.module.mymodule.MyModule"&gt;
-	&lt;listen ref="myService" /&gt;
-	&lt;event static-ref="myproject.module.myservice.MyServiceMessage.FIRE" method="setFire"/&gt;
-	&lt;/listen/&gt;
-&lt;/module&gt;
+				<p class="text-small">Inversion of Control system to make multi-modular applications. You can have an extremely powerful DSL layer (Domain Specific Language), where you can connect together any modules, components and describe any dependency, behavior between them.</p>
+{% highlight xml %}
+<module id="myModule" type="myproject.module.mymodule.MyModule">
+    <listen ref="myService">
+        <event static-ref="myproject.myservice.MyServiceMessage.FIRE" method="setFire"/>
+    </listen>
+</module>
 
-&lt;service id="myService" type="myproject.service.myservice.MyService"&gt;
-	&lt;property name="myprop" value="15" /&gt;
-&lt;/service&gt;</textarea>
+<service id="myService" type="myproject.service.myservice.MyService">
+    <property name="myprop" value="15" />
+</service>
+{% endhighlight %}
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-6 col-left">
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexInject"><h6>hexInject</h6></a>
 				<p class="text-small">Powerful and easy-to-use Dependency Injection system based on @annotations. It supports property, method and constructor injections predefined in injector mappings.</p>
-				<textarea class="code-haxe cm-hexmachina">
+{% highlight java %}
 class MyClass {
-	@Inject
-	public var myProperty:IConcreteDependecy;
-	
-	@Inject( "myName1" )
-	public var property1 : String;
-	
-	@Inject
-	public function myFunction( dep : Clazz, dep2 : ISomeInterface ) {
-		// function body
-	}
-}</textarea>
+    @Inject
+    public var myProperty:IConcreteDependecy;
+
+    @Inject( "myName1" )
+    public var property1 : String;
+
+    @Inject
+    public function myFunction( dep : Clazz, dep2 : ISomeInterface ) {
+        // function body
+    }
+}
+{% endhighlight %}
 			</div>
 			<div class="col-lg-6 col-right">
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexUnit"><h6>hexUnit</h6></a>
 				<p class="text-small">Extendable UnitTest runner with a basic set of assertions. It works well together with any mocking and assertion system. JUnit and FlexUnit like syntax.</p>
-				<textarea class="code-haxe cm-hexmachina">
+{% highlight java %}
 class MyTest {
-	var service:IMyService;
+    var service:IMyService;
 
-	@Before
+    @Before
     public function setUp() {
         this.service = new MyServiceMock();
     }
-	
-	@Test("Test sum method")
-	public function testAdd() {
-		Assert.equals( 8, service.add( 3, 5 ), "Sum of 3+5 should be 8" );
-	}
-}</textarea>
+
+    @Test("Test sum method")
+    public function testAdd() {
+        Assert.equals( 8, service.add( 3, 5 ), "Sum of 3+5 should be 8" );
+    }
+}
+{% endhighlight %}
 			</div>
 		</div>
-		<div class="row reveal hide">
+		<div class="row reveal">
 			<div class="col-lg-6 col-left">
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexService"><h6>hexService</h6></a>
 				<p class="text-small">Service layer extension for <b>hexMVC</b> to separate service communications. It has all typical predefined service behaviors like: configuration, success, fail, cancel, timeout, etc.</p>
-				<textarea class="code-haxe cm-hexmachina">
+{% highlight java %}
 var service = new MyService ();
-service.addHandler (StatelessServiceMessage.COMPLETE, this, function () {
-	trace ("complete");
-});</textarea>
+service.addHandler (StatelessServiceMessage.COMPLETE, function () {
+    trace ("complete");
+});
+{% endhighlight %}
 			</div>
 			<div class="col-lg-6 col-right">
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexAnnotation"><h6>hexAnnotation</h6></a>
 				<p class="text-small">Easy-to-use utilities for reading and writing @annotation data.</p>
-				<textarea class="code-haxe cm-hexmachina">
+{% highlight java %}
 class MyAnnotations implements IMyAnnotation {
-	@MyAnnotation( "yes" )
-	var annotated : String;
-	
-	@Language( "en" )
-	function doTest( i : Int ) : Void {
-	}
-}</textarea>
+    @MyAnnotation( "yes" )
+    var annotated : String;
+
+    @Language( "en" )
+    function doTest( i : Int ) : Void {
+    }
+}
+{% endhighlight %}
 			</div>
 		</div>
-		<div class="row reveal hide">
+		<div class="row reveal">
 			<div class="col-lg-6 col-left">
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexState"><h6>hexState</h6></a>
 				<p class="text-small">Powerful easy-to-use StateMachina system based on Martin Dowler’s implementation. It saves you from a lot of issue with invalid states of your application.</p>
-				<textarea class="code-haxe cm-hexmachina">
+{% highlight java %}
 var logAsUser = new MessageType( "onLogin" );
 
 var anonymous = new State( "anonymous" );
@@ -159,24 +169,26 @@ anonymous.addTransition( logAsUser, user);
 
 user.addEnterCommand( DisplayWelcomeCommand );
 
-controller.handleMessage( logAsUser );</textarea>
+controller.handleMessage( logAsUser );
+{% endhighlight %}
 			</div>
 			<div class="col-lg-6 col-right">
 				<a href="{{site.baseurl}}/docs/codecookbook/#hexCore"><h6>hexCore</h6></a>
 				<p class="text-small">Common core libraries that everyone needs in everyday developments like: exceptions, dispatcher, logging system, utils, etc.
 
 </p>
-				<textarea class="code-haxe cm-hexmachina">
+{% highlight java %}
 Logger.getInstance().setLevel( LogLevel.DEBUG );
 Logger.getInstance().addListener( new TraceLayout() );
 Logger.DEBUG( "test" );
 
 var onTest = new MessageType( "onTest" );
-var dispatcher = new Dispatcher<ITestListener>();
-dispatcher.addHandler( onTest, this, function () {
-	trace( "onTest" )
+var dispatcher = new ClosureDispatcher();
+dispatcher.addHandler( onTest, function () {
+    trace( "onTest" );
 } );
-dispatcher.dispatch( onTest, [] );</textarea>
+dispatcher.dispatch( onTest, [] );
+{% endhighlight %}
 			</div>
 		</div>
 		<div class="more">

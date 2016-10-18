@@ -11,7 +11,7 @@ class: downloads
 				<span class="terminal-icon"></span>
 				<h2>Get bundle through <strong>haxelib</strong></h2>
 				<hr class="divider"/>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<p>Get the full framework through command line to easily update and follow the changes.</p>
 				<h5>Install the latest version from command line</h5>
 				<div class="install-row">
 					{% for packages in site.data.packages limit: 1 %}
@@ -35,7 +35,7 @@ class: downloads
 				<span class="archive-icon"></span>
 				<h2>Get bundle <strong>zip</strong></h2>
 				<hr class="divider"/>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+				<p>Get the latest bundle zip version, that contains all the components of the framework.</p>
 				{% for downloads in site.data.downloads limit: 1 %}
 					<a href="{{ downloads.link }}" class="download">{{ downloads.name }}
 							<span class="download-icon">
@@ -80,7 +80,7 @@ class: downloads
 			<div class="text-content">
 				<h3>Older versions</h3>
 				<hr class="divider"/>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+				<p>Get older bundle versions of the framework.</p>
 				{% for downloads in site.data.downloads offset: 1 %}
 					<a href="{{ downloads.link }}" class="download">{{ downloads.name }}
 						<span class="download-icon">

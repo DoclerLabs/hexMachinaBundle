@@ -1,11 +1,34 @@
 - name: haxelib install hexmachina
   id: hexmachina
-- name: haxelib install hexInject
-  id: hexInject
-  url: docs/codecookbook/#hexInject
-- name: haxelib install hexMVC
+
+- name: haxelib install hexmvc
   id: hexMVC
   url: docs/codecookbook/#hexMVC
-- name: haxelib install hexIoC
+
+- name: haxelib install hexioc
   id: hexIoC
   url: docs/codecookbook/#hexIoC
+
+- name: haxelib install hexinject
+  id: hexInject
+  url: docs/codecookbook/#hexInject
+
+- name: haxelib install hexunit
+  id: hexUnit
+  url: docs/codecookbook/#hexUnit
+
+- name: haxelib install hexservice
+  id: hexService
+  url: docs/codecookbook/#hexService
+
+- name: haxelib install hexannotation
+  id: hexAnnotation
+  url: docs/codecookbook/#hexAnnotation
+
+- name: haxelib install hexstate
+  id: hexState
+  url: docs/codecookbook/#hexState
+
+- name: haxelib install hexcore
+  id: hexCore
+  url: docs/codecookbook/#hexCore

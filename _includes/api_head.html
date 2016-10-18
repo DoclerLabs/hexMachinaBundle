@@ -1,0 +1,50 @@
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>hexMachina - a powerful multi-modular MVC framework written in Haxe</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+	<title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
+	<link rel="icon" href="{{site.baseurl}}/img/favicon.png" sizes="32x32" />
+	<link rel="icon" href="{{site.baseurl}}/img/favicon.png" sizes="192x192" />
+	<link rel="icon" type="image/png" href="{{site.baseurl}}/img/favicon.png">
+	<link rel="apple-touch-icon" href="{{ "/img/appicon.png" | prepend: site.baseurl }}"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+
+	<link rel="stylesheet" href="{{site.baseurl}}/css/simple.css">
+
+	<link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+
+	<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{site.baseurl}}/feed.xml">
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700" rel="stylesheet" type="text/css">
+	
+	<!-- headers from dox template -->
+	<link href="{{site.baseurl}}/docs/api/bootstrap/css/bootstrap.css" rel="stylesheet" />
+	<link href="{{site.baseurl}}/docs/api/bootstrap/css/bootstrap-responsive.css" rel="stylesheet" />
+	<link href="{{site.baseurl}}/docs/api/bootstrap/css/bootstrap-select.css" rel="stylesheet" />
+	
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic,400italic' rel='stylesheet' type='text/css'/>
+	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,600,600italic,400' rel='stylesheet' type='text/css'/>
+	<link href='http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css' rel='stylesheet' type='text/css' />
+
+	<script src="{{site.baseurl}}/docs/api/jquery-1.9.1.min.js"></script>
+	<script src="{{site.baseurl}}/docs/api/bootstrap/js/bootstrap.min.js"></script>
+	<script src="{{site.baseurl}}/docs/api/bootstrap/js/bootstrap-select.min.js"></script>
+	
+	<link href="{{site.baseurl}}/docs/api/styles.css" rel="stylesheet" />
+	<link href="{{site.baseurl}}/docs/api/haxe-nav.css" rel="stylesheet" />
+	
+	<script type="text/javascript">var dox = {
+		rootPath: "/docs/api/",
+		platforms: [
+			"js"
+		]
+	};</script>
+	<script type="text/javascript" src="{{site.baseurl}}/docs/api/nav.js"></script>
+	<script type="text/javascript" src="{{site.baseurl}}/docs/api/index.js"></script>
+</head>

@@ -6,7 +6,7 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: HEXMACHINA - a powerful multi-modular MVC framework written in Haxe
+title: hexMachina - a powerful multi-modular MVC framework written in Haxe
 email: info@hexmachina.org
 description: A powerful multi-modular MVC+S system written in Haxe
 baseurl: "/hexMachina" # the subpath of your site, e.g. /blog
@@ -22,7 +22,9 @@ github: [metadata]
 kramdown:
   input: GFM
   hard_wrap: false
-gems: [jekyll-paginate]
+gems: 
+  - jekyll-paginate
+  - jekyll-seo-tag
 paginate: 10
 paginate_path: /blog/page:num/
 
@@ -32,7 +34,7 @@ incremental: false
 highlighter: rouge
 gist:
   noscript: false
-exclude: [".git", "hex*", "build.bat", "build"]
+exclude: [".git", "hex*", "build.bat", "build", "node_modules"]
 
 disqus_shortname: hexmachina
 disqus_publickey: nB9WCx4oEOsvmKPvKtoGtIxp2xre054EU7c7kqHyn09BoP1skkTDw109FXJSAOVJ

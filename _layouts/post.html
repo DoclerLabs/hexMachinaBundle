@@ -29,8 +29,8 @@ class: posts
 	<div class="row">
 		<article class="col-lg-9">
 			<div class="box col-lg-12">
-				{% if page.img %}
-				<div class="post-image" style="background-image:url({{ page.img | prepend: site.baseurl }})"></div>
+				{% if page.image %}
+				<div class="post-image" style="background-image:url({{ page.image | prepend: site.baseurl }})"></div>
 				{% endif %}
 				<div class="content">
 					<time>{{ page.date | date_to_long_string }}</time>

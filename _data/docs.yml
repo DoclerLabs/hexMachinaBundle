@@ -10,9 +10,11 @@
 - name: Tutorials
   link: /docs/tutorials
 
-- name: API documentation
-  link: http://hexmachina.org/docs/
-  external: true
-
 - name: Tools & Libraries
   link: /docs/tools
+
+- name: _separator_
+
+- name: API documentation
+  link: /docs/api
+  highlight: true

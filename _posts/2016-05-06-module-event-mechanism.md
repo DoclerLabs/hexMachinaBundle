@@ -2,7 +2,7 @@
 published: true
 layout: post
 title: Classical MVC Module Event mechanism
-img: /img/blog/MVC-flow-diagram.jpg
+image: /img/blog/MVC-flow-diagram.jpg
 category: Design
 tags: [feature, oop, mvc]
 ---

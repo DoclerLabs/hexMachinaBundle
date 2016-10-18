@@ -1,5 +1,10 @@
 {% for docs in site.data.docs %}
-	<li>
-		<a href="{% if docs.external == true %}{{ docs.link}}{% else %}{{ docs.link | prepend: site.baseurl }}{% endif %}" {% if page.url contains docs.link %}class="active"{% endif %} {% if docs.external == true %} target="_blank" {% endif %}>{{ docs.name }}</a>
-	</li>
+	{% if docs.name == "_separator_" %}
+		<li>
+		</li>
+	{% else %}
+		<li>
+			<a href="{% if docs.external == true %}{{ docs.link}}{% else %}{{ docs.link | prepend: site.baseurl }}{% endif %}" class="{% if page.url contains docs.link %}active{% endif %}{% if docs.highlight == true %} highlight{% endif %}" {% if docs.external == true %} target="_blank" {% endif %}>{{ docs.name }}</a>
+		</li>
+	{% endif %}
 {% endfor %}

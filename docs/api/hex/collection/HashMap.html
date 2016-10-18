@@ -1,0 +1,57 @@
+---
+layout: api
+title: home
+---
+<!-- use theme color or fallback -->
+<!--use textcolor from settings, otherwise create a contrasting color to theme color-->
+<div class="dox-content"><div class="container main-content"><div class="row-fluid"><div class="span3"><div class="well sidebar-nav"><form class="form-search" id="searchForm"><div class="input-prepend input-block-level"><span class="add-on"><i class="icon-search"></i></span><input id="search" type="text" placeholder="Search" autocomplete="off"/></div></form><div class="dropdown"><select id="select-platform" class="selectpicker" title="Filter by platform" data-width="100%"><option value="all" selected="true">All Platforms</option><option>js</option><option>flash</option><option>neko</option></select></div></div><div class="well sidebar-nav"><div id="nav"></div></div></div><div class="span9"><div class="page-header"><h1><small>class</small> HashMap&lt;<span class="type">K</span>, <span class="type">V</span>&gt;</h1><h4><small>package <a href="../../hex/collection/index.html">hex.collection</a></small></h4>    <h4><small>implements <a class="type" title="" href="../../hex/collection/IHashMap.html">IHashMap</a>&lt;<span class="type">K</span>, <span class="type">V</span>&gt;</small></h4><p class="availability"><hr/><em>Available on  all platforms</em></p></div><div class="body"><div class="doc doc-main"><div class="indent"><p>...
+@author Francis Bourre</p></div></div><h3 class="section">Constructor</h3><div class="fields"><div class="field "><h3><span class="anchor" id="new"></span><p><code><a href="#new"><span class="identifier">new</span></a> ()</code></p></h3><div class="doc"><p></p></div></div></div><h3 class="section">Methods</h3><div class="fields"><div class="field "><h3><span class="anchor" id="clear"></span><p><code><a href="#clear"><span class="identifier">clear</span></a> ():<span class="type">Void</span></code></p></h3><div class="doc"><p>Removes all of the mappings from this map (optional operation).
+The map will be empty after this call returns.</p></div></div><div class="field "><h3><span class="anchor" id="containsKey"></span><p><code><a href="#containsKey"><span class="identifier">containsKey</span></a> (<span style="white-space:nowrap">key:<span class="type">K</span></span>):<span class="type">Bool</span></code></p></h3><div class="doc"><p>Returns <code>true</code> if this map contains a mapping for the specified
+key.  More formally, returns <code>true</code> if and only if
+this map contains a mapping for a key <code>k</code> such that
+<code>key === k</code>.  (There can be at most one such mapping.)</p><p class="javadoc">Parameters:</p><table class="table table-bordered params"><tr><th width="25%"><code>key</code></th><td><p>key object whose presence in this map is to be tested</p></td></tr></table><p class="javadoc">Throws:</p><table class="table table-bordered params"><div class="indent inline-content"><tr><th width="25%"><code>&lt;code&gt;NullPointerException&lt;/code&gt;</code></th><td><p>—  if the specified key is null</p></td></tr></div></table><p class="javadoc">Returns:</p><div class="indent inline-content"><code>true</code> if this map contains a mapping for the specified
+key</div></div></div><div class="field "><h3><span class="anchor" id="containsValue"></span><p><code><a href="#containsValue"><span class="identifier">containsValue</span></a> (<span style="white-space:nowrap">value:<span class="type">V</span></span>):<span class="type">Bool</span></code></p></h3><div class="doc"><p>Returns <code>true</code> if this map maps one or more keys to the
+specified value.  More formally, returns <code>true</code> if and only if
+this map contains at least one mapping to a value <code>v</code> such that
+<code>(value === v)</code>.</p><p class="javadoc">Parameters:</p><table class="table table-bordered params"><tr><th width="25%"><code>value</code></th><td><p>value whose presence in this map is to be tested</p></td></tr></table><p class="javadoc">Throws:</p><table class="table table-bordered params"><div class="indent inline-content"><tr><th width="25%"><code>&lt;code&gt;NullPointerException&lt;/code&gt;</code></th><td><p>—  if the specified value is null</p></td></tr></div></table><p class="javadoc">Returns:</p><div class="indent inline-content"><code>true</code> if this map maps one or more keys to the
+specified value</div></div></div><div class="field "><h3><span class="anchor" id="get"></span><p><code><a href="#get"><span class="identifier">get</span></a> (<span style="white-space:nowrap">key:<span class="type">K</span></span>):<span class="type">V</span></code></p></h3><div class="doc"><p>Returns the value to which the specified key is mapped,
+or <code>null</code> if this map contains no mapping for the key.
+<p>
+More formally, if this map contains a mapping from a key
+<code>k</code> to a value <code>v</code> such that 
+<code>(key === k)</code>, then this method returns <code>v</code>; otherwise
+it returns <code>null</code>.  (There can be at most one such mapping.)
+</p><p>
+As this map permits null values, a return value of <code>null</code>
+does not <i>necessarily</i> indicate that the map contains no mapping
+for the key; it's also possible that the map explicitly maps the key to
+<code>null</code>. The <code>containsKey</code> operation may be used
+to distinguish these two cases.
+</p></p><p class="javadoc">Parameters:</p><table class="table table-bordered params"><tr><th width="25%"><code>key</code></th><td><p>the key whose associated value is to be returned</p></td></tr></table><p class="javadoc">Throws:</p><table class="table table-bordered params"><div class="indent inline-content"><tr><th width="25%"><code>&lt;code&gt;NullPointerException&lt;/code&gt;</code></th><td><p>—  if the specified key is null</p></td></tr></div></table><p class="javadoc">Returns:</p><div class="indent inline-content"><p>the value to which the specified key is mapped, or
+<code>null</code> if this map contains no mapping for the key</p></div></div></div><div class="field "><h3><span class="anchor" id="getKeys"></span><p><code><a href="#getKeys"><span class="identifier">getKeys</span></a> ():<span class="type">Array</span>&lt;<span class="type">K</span>&gt;</code></p></h3><div class="doc"><p class="javadoc">Returns:</p><div class="indent inline-content"><p>an array view of the keys contained in this map</p></div></div></div><div class="field "><h3><span class="anchor" id="getValues"></span><p><code><a href="#getValues"><span class="identifier">getValues</span></a> ():<span class="type">Array</span>&lt;<span class="type">V</span>&gt;</code></p></h3><div class="doc"><p class="javadoc">Returns:</p><div class="indent inline-content"><p>an array view of the values contained in this map</p></div></div></div><div class="field "><h3><span class="anchor" id="isEmpty"></span><p><code><a href="#isEmpty"><span class="identifier">isEmpty</span></a> ():<span class="type">Bool</span></code></p></h3><div class="doc"><p class="javadoc">Returns:</p><div class="indent inline-content"><code>true</code> if this map contains no key-value mappings</div></div></div><div class="field "><h3><span class="anchor" id="put"></span><p><code><a href="#put"><span class="identifier">put</span></a> (<span style="white-space:nowrap">key:<span class="type">K</span>,</span> <span style="white-space:nowrap">value:<span class="type">V</span></span>):<span class="type">V</span></code></p></h3><div class="doc"><p>Associates the specified value with the specified key in this map
+(optional operation).  If the map previously contained a mapping for
+the key, the old value is replaced by the specified value.  (A map
+<code>m</code> is said to contain a mapping for a key <code>k</code> 
+if and only if <code>m.containsKey(k)</code> would return
+<code>true</code>.)</p><p class="javadoc">Parameters:</p><table class="table table-bordered params"><tr><th width="25%"><code>key</code></th><td><p>key with which the specified value is to be associated</p></td></tr><tr><th width="25%"><code>value</code></th><td><p>value to be associated with the specified key</p></td></tr></table><p class="javadoc">Throws:</p><table class="table table-bordered params"><div class="indent inline-content"><tr><th width="25%"><code>&lt;code&gt;NullPointerException&lt;/code&gt;</code></th><td><p>—  if the specified key or value is null</p></td></tr></div></table><p class="javadoc">Returns:</p><div class="indent inline-content"><p>the previous value associated with <code>key</code>, or
+<code>null</code> if there was no mapping for <code>key</code>.
+(A <code>null</code> return can also indicate that the map
+previously associated <code>null</code> with <code>key</code>,
+if the implementation supports <code>null</code> values.)</p></div></div></div><div class="field "><h3><span class="anchor" id="remove"></span><p><code><a href="#remove"><span class="identifier">remove</span></a> (<span style="white-space:nowrap">key:<span class="type">K</span></span>):<span class="type">V</span></code></p></h3><div class="doc"><p>Removes the mapping for a key from this map if it is present
+(optional operation). More formally, if this map contains a mapping
+from key <code>k</code> to value <code>v</code> such that
+<code>(key === k)</code>, that mapping is removed. 
+(The map can contain at most one such mapping.)
+<p>
+Returns the value to which this map previously associated the key,
+or <code>null</code> if the map contained no mapping for the key.
+</p><p>
+As this map permits null values, then a return value of
+<code>null</code> does not <i>necessarily</i> indicate that the map
+contained no mapping for the key; it's also possible that the map
+explicitly mapped the key to <code>null</code>.
+</p><p>
+The map will not contain a mapping for the specified key once the
+call returns.
+</p></p><p class="javadoc">Parameters:</p><table class="table table-bordered params"><tr><th width="25%"><code>key</code></th><td><p>key whose mapping is to be removed from the map</p></td></tr></table><p class="javadoc">Throws:</p><table class="table table-bordered params"><div class="indent inline-content"><tr><th width="25%"><code>&lt;code&gt;NullPointerException&lt;/code&gt;</code></th><td><p>—  if the specified key is null</p></td></tr></div></table><p class="javadoc">Returns:</p><div class="indent inline-content"><p>the previous value associated with <code>key</code>, or
+<code>null</code> if there was no mapping for <code>key</code>.</p></div></div></div><div class="field "><h3><span class="anchor" id="size"></span><p><code><a href="#size"><span class="identifier">size</span></a> ():<span class="type">Int</span></code></p></h3><div class="doc"><p class="javadoc">Returns:</p><div class="indent inline-content"><p>the number of key-value mappings in this map</p></div></div></div></div></div></div></div></div></div><script src="{{site.baseurl}}/docs/api/highlighter.js"></script><link href="{{site.baseurl}}/docs/api/highlighter.css" rel="stylesheet"/>

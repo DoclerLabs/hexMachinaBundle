@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Structural presentation"
-img: /img/blog/structure-prezi.jpg
+image: /img/blog/structure-prezi.jpg
 category: Tutorial
 tags: [video, feature]
 ---

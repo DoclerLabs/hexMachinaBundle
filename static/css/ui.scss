@@ -123,10 +123,11 @@ body {
 		}
 		.read-more {
 			display: inline-block;
-			color: $c3;
+			color: #1a467f;
 			font-size: 20px;
 			font-weight: 700;
 			margin-bottom: 20px;
+			cursor: pointer;
 		}
 		time {
 			font: 700 16px 'Lato';

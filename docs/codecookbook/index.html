@@ -9,7 +9,7 @@ title: "Code Cookbook"
 		{% for snippet in site.data.cookbook.hexMVC %}
 		<br>
 		{% if snippet.title != null %}<p class="text-small">{{ snippet.title }}</p>{% endif %}
-		<textarea class="{{ snippet.type }} cm-s-hexmachina">
+		<textarea class="{{ snippet.type }} cm-s-hexmachina code-haxe">
 {{ snippet.code | xml_escape | rstrip }}</textarea>
 		{% endfor %}
 	</section>
@@ -18,7 +18,7 @@ title: "Code Cookbook"
 
 <section class="code-snippets">
 	<h3>hexIoC<span class="anchor" id="hexIoC"></span></h3>
-	<p>Inverion of Control system to make multi-modular applications. You can have an extremely powerful DSL layer (Domain Specific Language), where you can connect togethet any modules, components and describe any dependency, behavior between them.</p>
+	<p>Inversion of Control system to make multi-modular applications. You can have an extremely powerful DSL layer (Domain Specific Language), where you can connect togethet any modules, components and describe any dependency, behavior between them.</p>
 	<section class="reveal hide">
 		{% for snippet in site.data.cookbook.hexIoC %}
 		<br>
@@ -113,23 +113,3 @@ title: "Code Cookbook"
 	</section>
 	<a class="read-more">Show more &raquo;</a><br><br><br>
 </section>
-
-<script src="{{site.baseurl}}/lib/jquery/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="{{site.baseurl}}/lib/app.js"></script>
-<script type="text/javascript" src="{{site.baseurl}}/lib/ReadMore.js"></script>
-<script type="text/javascript">
-	$(function () {
-		var snippets = $('.code-snippets');
-		
-		$.each(snippets, function (index, element) {
-			var rm = new app.ReadMore(element, "Show more »", "« Show less");
-			rm.onReadLess = function (rm) {
-				//var anchor = rm.hiddenItems.prop('id');
-				//document.getElementById(anchor).scrollIntoView();
-				rm.showMoreBtn[0].scrollIntoView();
-			}
-		});
-	});
-	
-	
-</script>

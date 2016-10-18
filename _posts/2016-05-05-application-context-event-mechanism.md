@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "ApplicationContext Event mechanism"
-img: /img/blog/ApplicationContext-Flow-Diagram.jpg
+image: /img/blog/ApplicationContext-Flow-Diagram.jpg
 category: Design
 tags: [feature, dsl]
 ---
