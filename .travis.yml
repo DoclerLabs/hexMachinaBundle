@@ -6,6 +6,9 @@ haxe:
   - "3.3.0-rc.1"
   - development
 
+php:
+- 5.4
+
 matrix:
   allow_failures:
   - haxe: development
