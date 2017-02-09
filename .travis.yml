@@ -62,13 +62,13 @@ before_script:
   - git config --global user.name "Travis-CI"
   
 script:
-- if [ $TRAVIS_HAXE_VERSION != "3.2.1" ]; then haxe build-each.hxml --macro include\\('hex'\\) --no-output -php bin; fi
+- if [ $TRAVIS_HAXE_VERSION != "3.2.1" ]; then bash -c "haxe build-each.hxml --macro include('hex') --no-output -php bin"; fi
 - if [ $TRAVIS_HAXE_VERSION != "3.2.1" ]; then haxe build-php.hxml && php bin/index.php; fi
-- haxe build-each.hxml --macro include\\('hex'\\) --no-output -neko bin/docs.n
+- bash -c "haxe build-each.hxml --macro include('hex') --no-output -neko bin/docs.n"
 - if [ $TRAVIS_HAXE_VERSION != "3.2.1" ]; then haxe build-neko.hxml && neko bin/TravisMachinaTest.n; fi
-- haxe build-each.hxml --macro include\\('hex'\\) --no-output -js bin/docs.js
+- bash -c "haxe build-each.hxml --macro include('hex') --no-output -js bin/docs.js"
 - haxe build-js.hxml           && node bin/TravisMachinaTest.js
-- if [ $TRAVIS_HAXE_VERSION != "3.2.1" ]; then haxe build-each.hxml --macro include\\('hex'\\) --no-output -swf-version 11 -swf bin/docs.swf; fi
+- if [ $TRAVIS_HAXE_VERSION != "3.2.1" ]; then bash -c "haxe build-each.hxml --macro include('hex') --no-output -swf-version 11 -swf bin/docs.swf"; fi
 - if [ $TRAVIS_HAXE_VERSION != "3.2.1" ]; then haxe build-flash.hxml -D fdb && haxe flash/run.hxml bin/TravisMachinaTest.swf; fi
 
 before_deploy: "./.travis/pre-deploy.sh"
