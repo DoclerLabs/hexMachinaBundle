@@ -22,7 +22,6 @@ env:
 addons:
   apt:
     packages:
-    - php5-cli
     - libcurl3:i386
     - libglib2.0-0:i386
     - libx11-6:i386
