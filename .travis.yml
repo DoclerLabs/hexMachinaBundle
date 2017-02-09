@@ -1,3 +1,5 @@
+sudo: required
+
 language: haxe
 
 # haxe versions : http://haxe.org/website-content/downloads/versions.json
