@@ -37,9 +37,17 @@ before_install:
   - echo $TRAVIS_TAG
   - if [[ "$TRAVIS_TAG" != "" ]]; then export DEPENDENCIES_BRANCH=$TRAVIS_TAG; fi
   - echo $DEPENDENCIES_BRANCH
-  - sudo rm /etc/apt/sources.list.d/google-chrome.list
+  - sudo sed -i -e 's/deb http/deb [arch=amd64] http/' "/etc/apt/sources.list.d/google-chrome.list" "/opt/google/chrome/cron/google-chrome"
   - sudo dpkg --add-architecture i386
   - sudo apt-get update
+  - libcurl3:i386
+  - libglib2.0-0:i386
+  - libx11-6:i386
+  - libxext6:i386
+  - libxt6:i386
+  - libxcursor1:i386
+  - libnss3:i386
+  - libgtk2.0-0:i386
   
 install:
 - git clone --recursive -b $DEPENDENCIES_BRANCH https://github.com/DoclerLabs/hexUnit.git ~/hexunit
