@@ -38,11 +38,6 @@ before_install:
   - echo $TRAVIS_TAG
   - if [[ "$TRAVIS_TAG" != "" ]]; then export DEPENDENCIES_BRANCH=$TRAVIS_TAG; fi
   - echo $DEPENDENCIES_BRANCH
-  - php5 -v
-  - sudo add-apt-repository ppa:ondrej/php5
-  - sudo apt-get update
-  - sudo apt-get install php5
-  - php5 -v
   
 install:
 - git clone --recursive -b $DEPENDENCIES_BRANCH https://github.com/DoclerLabs/hexUnit.git ~/hexunit
