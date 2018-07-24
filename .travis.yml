@@ -24,7 +24,7 @@ env:
   - HAXE_TARGET=js
   #- HAXE_TARGET=java
   - HAXE_TARGET=hl
-  global:
+  - global:
     # travis encrypt GH_TOKEN=<access-token> -r DoclerLabs/hexMachina
     - secure: Y7k64lsVnGXXFyEttqcYONkQog9pynxGIXnJAa/sdbehdknjQooDQbqWbd2CDzHs1lp7I5kppD3oM8jjkd+7ZH0EjnhzPr2f1OzdcLN3djml2hrKaDr4EMrQW9K3pDCAKP2CtaQtbxjm2l5QHEUcjLe82d/dS5TgEemUPA7/JYM4afCoXpGnCVZcknf5PbR2W3hyFk1R9+8B++5MuH3pNMwZvYEWwzUQLV4GZppe22N7ZlFjLNKnZ9tOd4QcRT9528ujvIKR0K9antuJDBQKTCQqxCTcQmndDp0lEuBhfC9ZDlrMVTLbKUD4B/0g0wHlMKsiJIWo1L03Ec5aASRV4uKRC/4RSLqmY1EXDEuDb1xG4Pg4/NH2Qpqju0qHE/vT5jYNMr2rmnQpcXZEotyoJ70wtIKRR0iIwsSAvTI5SKyNBXg8Wpkqu83/03IfgFqCXPAvOmuv7Pp8zPtLNcz7XnjTiwRFSGvwOzX8jz/+JwCCagLCo6AEcCDT4HCj6hUtHfWdrcyBBHUD40rFJjEDyYyl5MX9yJonznwiWo8Nu3Gx5f4C5WmdEQpxuwUK5wz4uZdH3gpCu7LZyvjUxdPwJNRp5P0uAdptH/vLyVMSyxBG4yC+KFMjWmj65pk0hW0YdS0JcuzgLrtb4r0TvtyElcv04vN7i0sKhY3ai+63IJ8=
     - TRAVIS_NODE_VERSION="6.6.0"
