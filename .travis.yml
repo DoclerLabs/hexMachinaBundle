@@ -3,88 +3,101 @@ dist: trusty
 
 language: haxe
 
+os:
+  - linux
+
 # haxe versions : http://haxe.org/website-content/downloads/versions.json
 haxe:
   - "3.4.7"
   - development
 
-matrix:
-  allow_failures:
-  - haxe: development
-    
 env:
+  - HAXE_TARGET=cpp
+  #- HAXE_TARGET=cs
+  - HAXE_TARGET=flash
+  #- HAXE_TARGET=lua
+  - HAXE_TARGET=neko
+  - HAXE_TARGET=node
+  - HAXE_TARGET=php
+  - HAXE_TARGET=php7
+  #- HAXE_TARGET=python
+  - HAXE_TARGET=js
+  #- HAXE_TARGET=java
+  - HAXE_TARGET=hl
   global:
-  # travis encrypt GH_TOKEN=<access-token> -r DoclerLabs/hexMachina
-  - secure: Y7k64lsVnGXXFyEttqcYONkQog9pynxGIXnJAa/sdbehdknjQooDQbqWbd2CDzHs1lp7I5kppD3oM8jjkd+7ZH0EjnhzPr2f1OzdcLN3djml2hrKaDr4EMrQW9K3pDCAKP2CtaQtbxjm2l5QHEUcjLe82d/dS5TgEemUPA7/JYM4afCoXpGnCVZcknf5PbR2W3hyFk1R9+8B++5MuH3pNMwZvYEWwzUQLV4GZppe22N7ZlFjLNKnZ9tOd4QcRT9528ujvIKR0K9antuJDBQKTCQqxCTcQmndDp0lEuBhfC9ZDlrMVTLbKUD4B/0g0wHlMKsiJIWo1L03Ec5aASRV4uKRC/4RSLqmY1EXDEuDb1xG4Pg4/NH2Qpqju0qHE/vT5jYNMr2rmnQpcXZEotyoJ70wtIKRR0iIwsSAvTI5SKyNBXg8Wpkqu83/03IfgFqCXPAvOmuv7Pp8zPtLNcz7XnjTiwRFSGvwOzX8jz/+JwCCagLCo6AEcCDT4HCj6hUtHfWdrcyBBHUD40rFJjEDyYyl5MX9yJonznwiWo8Nu3Gx5f4C5WmdEQpxuwUK5wz4uZdH3gpCu7LZyvjUxdPwJNRp5P0uAdptH/vLyVMSyxBG4yC+KFMjWmj65pk0hW0YdS0JcuzgLrtb4r0TvtyElcv04vN7i0sKhY3ai+63IJ8=
-  - TRAVIS_NODE_VERSION="6.6.0"
+    # travis encrypt GH_TOKEN=<access-token> -r DoclerLabs/hexMachina
+    - secure: Y7k64lsVnGXXFyEttqcYONkQog9pynxGIXnJAa/sdbehdknjQooDQbqWbd2CDzHs1lp7I5kppD3oM8jjkd+7ZH0EjnhzPr2f1OzdcLN3djml2hrKaDr4EMrQW9K3pDCAKP2CtaQtbxjm2l5QHEUcjLe82d/dS5TgEemUPA7/JYM4afCoXpGnCVZcknf5PbR2W3hyFk1R9+8B++5MuH3pNMwZvYEWwzUQLV4GZppe22N7ZlFjLNKnZ9tOd4QcRT9528ujvIKR0K9antuJDBQKTCQqxCTcQmndDp0lEuBhfC9ZDlrMVTLbKUD4B/0g0wHlMKsiJIWo1L03Ec5aASRV4uKRC/4RSLqmY1EXDEuDb1xG4Pg4/NH2Qpqju0qHE/vT5jYNMr2rmnQpcXZEotyoJ70wtIKRR0iIwsSAvTI5SKyNBXg8Wpkqu83/03IfgFqCXPAvOmuv7Pp8zPtLNcz7XnjTiwRFSGvwOzX8jz/+JwCCagLCo6AEcCDT4HCj6hUtHfWdrcyBBHUD40rFJjEDyYyl5MX9yJonznwiWo8Nu3Gx5f4C5WmdEQpxuwUK5wz4uZdH3gpCu7LZyvjUxdPwJNRp5P0uAdptH/vLyVMSyxBG4yC+KFMjWmj65pk0hW0YdS0JcuzgLrtb4r0TvtyElcv04vN7i0sKhY3ai+63IJ8=
+    - TRAVIS_NODE_VERSION="6.6.0"
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - haxe: development
+    - env: HAXE_TARGET=flash # cannot trust that guy
+    - env: HAXE_TARGET=cpp # Not supported yet
+    - env: HAXE_TARGET=cs # Not supported yet
+    - env: HAXE_TARGET=lua # Not supported yet
+    - env: HAXE_TARGET=python # Not supported yet
+    - env: HAXE_TARGET=java # Not supported yet
+    - env: HAXE_TARGET=hl # Not supported yet
+  exclude:
+    - haxe: "3.4.7"
+      env: HAXE_TARGET=hl
 
 before_install:
   - echo $TRAVIS_BRANCH
-  - if [[ "$TRAVIS_BRANCH" != "master" ]]; then export DEPENDENCIES_BRANCH=$TRAVIS_BRANCH; else export DEPENDENCIES_BRANCH=master; fi
+  - export DEPENDENCIES_BRANCH=$TRAVIS_BRANCH
   - echo $TRAVIS_TAG
   - if [[ "$TRAVIS_TAG" != "" ]]; then export DEPENDENCIES_BRANCH=$TRAVIS_TAG; fi
   - echo $DEPENDENCIES_BRANCH
-  - sudo sed -i -e 's/deb http/deb [arch=amd64] http/' "/etc/apt/sources.list.d/google-chrome.list" "/opt/google/chrome/cron/google-chrome"
-  - sudo dpkg --add-architecture i386
-  - sudo apt-get update
-  - sudo apt-get install -qq libcurl3:i386
-  - sudo apt-get install -qq libglib2.0-0:i386
-  - sudo apt-get install -qq libx11-6:i386
-  - sudo apt-get install -qq libxext6:i386
-  - sudo apt-get install -qq libxt6:i386
-  - sudo apt-get install -qq libxcursor1:i386
-  - sudo apt-get install -qq libnss3:i386
-  - sudo apt-get install -qq libgtk2.0-0:i386
 
 install:
   - export BRANCH_REF=$DEPENDENCIES_BRANCH
+  - haxelib install travix --always
 # hexLog
-  - if [[ $( git ls-remote https://github.com/DoclerLabs/hexLog.git $DEPENDENCIES_BRANCH | wc -l ) == "0" ]]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
+  - if [ $( git ls-remote https://github.com/DoclerLabs/hexLog.git $BRANCH_REF | wc -l ) == "0" ]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
   - echo Checking out $DEPENDENCIES_BRANCH
   - git clone --recursive -b $DEPENDENCIES_BRANCH https://github.com/DoclerLabs/hexLog.git ~/hexlog
   - haxelib dev hexlog ~/hexlog
 # hexCore
-  - if [[ $( git ls-remote https://github.com/DoclerLabs/hexCore.git $DEPENDENCIES_BRANCH | wc -l ) == "0" ]]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
+  - if [ $( git ls-remote https://github.com/DoclerLabs/hexCore.git $BRANCH_REF | wc -l ) == "0" ]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
   - echo Checking out $DEPENDENCIES_BRANCH
   - git clone --recursive -b $DEPENDENCIES_BRANCH https://github.com/DoclerLabs/hexCore.git ~/hexcore
   - haxelib install ~/hexcore/haxelib.json --always
   - haxelib dev hexcore ~/hexcore
 # hexUnit
-  - if [[ $( git ls-remote https://github.com/DoclerLabs/hexUnit.git $DEPENDENCIES_BRANCH | wc -l ) == "0" ]]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
+  - if [ $( git ls-remote https://github.com/DoclerLabs/hexUnit.git $BRANCH_REF | wc -l ) == "0" ]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
   - echo Checking out $DEPENDENCIES_BRANCH
   - git clone --recursive -b $DEPENDENCIES_BRANCH https://github.com/DoclerLabs/hexUnit.git ~/hexunit
   - haxelib dev hexunit ~/hexunit
 # hexReflection
-  - if [[ $( git ls-remote https://github.com/DoclerLabs/hexReflection.git $DEPENDENCIES_BRANCH | wc -l ) == "0" ]]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
+  - if [ $( git ls-remote https://github.com/DoclerLabs/hexReflection.git $BRANCH_REF | wc -l ) == "0" ]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
   - echo Checking out $DEPENDENCIES_BRANCH
   - git clone --recursive -b $DEPENDENCIES_BRANCH https://github.com/DoclerLabs/hexReflection.git ~/hexreflection
   - haxelib dev hexreflection ~/hexreflection
 # hexAnnotation
-  - if [[ $( git ls-remote https://github.com/DoclerLabs/hexAnnotation.git $DEPENDENCIES_BRANCH | wc -l ) == "0" ]]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
+  - if [ $( git ls-remote https://github.com/DoclerLabs/hexAnnotation.git $BRANCH_REF | wc -l ) == "0" ]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
   - echo Checking out $DEPENDENCIES_BRANCH
   - git clone --recursive -b $DEPENDENCIES_BRANCH https://github.com/DoclerLabs/hexAnnotation.git ~/hexannotation
   - haxelib dev hexannotation ~/hexannotation
 # hexInject
-  - if [[ $( git ls-remote https://github.com/DoclerLabs/hexInject.git $DEPENDENCIES_BRANCH | wc -l ) == "0" ]]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
+  - if [ $( git ls-remote https://github.com/DoclerLabs/hexInject.git $BRANCH_REF | wc -l ) == "0" ]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
   - echo Checking out $DEPENDENCIES_BRANCH
   - git clone --recursive -b $DEPENDENCIES_BRANCH https://github.com/DoclerLabs/hexInject.git ~/hexinject
   - haxelib dev hexinject ~/hexinject
 # hexDsl
-  - if [[ $( git ls-remote https://github.com/DoclerLabs/hexDsl.git $DEPENDENCIES_BRANCH | wc -l ) == "0" ]]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
+  - if [ $( git ls-remote https://github.com/DoclerLabs/hexDsl.git $BRANCH_REF | wc -l ) == "0" ]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
   - echo Checking out $DEPENDENCIES_BRANCH
   - git clone --recursive -b $DEPENDENCIES_BRANCH https://github.com/DoclerLabs/hexDsl.git ~/hexdsl
   - haxelib dev hexdsl ~/hexdsl
 # hexCommand
-  - if [[ $( git ls-remote https://github.com/DoclerLabs/hexCommand.git $DEPENDENCIES_BRANCH | wc -l ) == "0" ]]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
+  - if [ $( git ls-remote https://github.com/DoclerLabs/hexCommand.git $BRANCH_REF | wc -l ) == "0" ]; then export DEPENDENCIES_BRANCH=develop; else export DEPENDENCIES_BRANCH=$BRANCH_REF; fi
   - echo Checking out $DEPENDENCIES_BRANCH
   - git clone --recursive -b $DEPENDENCIES_BRANCH https://github.com/DoclerLabs/hexCommand.git ~/hexcommand
   - haxelib dev hexcommand ~/hexcommand
 #hexMachina
   - haxelib dev hexmachina .
-#---- dependencies done ----
-  - export DISPLAY=:99.0;
-  - export AUDIODEV=null;
-  - haxe flash/install.hxml
+  - haxelib path hexcommand
   - git clone --recursive https://github.com/chipshort/hexDoc-Theme.git ~/hexdoctheme
 # update node for deploy scripts
   - rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm install $TRAVIS_NODE_VERSION
@@ -94,13 +107,10 @@ before_script:
   - git config --global user.name "Travis-CI"
   
 script:
-- haxe build-php.hxml && php bin/index.php
-- haxe build-neko.hxml && neko bin/MainTest.n
-- haxe build-js.hxml           && node bin/MainTest.js
-- haxe build-flash.hxml -D fdb && haxe flash/run.hxml bin/MainTest.swf
+  - haxelib run travix $HAXE_TARGET
 
 before_deploy:
-- if [ $TRAVIS_HAXE_VERSION == "3.4.7" ]; then ./.travis/pre-deploy.sh; fi
+  - if [ $TRAVIS_HAXE_VERSION == "3.4.7" && ]; then ./.travis/pre-deploy.sh; fi
 
 deploy:
   provider: releases
@@ -116,7 +126,7 @@ deploy:
     tags: true
 
 after_deploy:
-- if [ $TRAVIS_HAXE_VERSION == "3.4.7" ]; then ./.travis/post-deploy.sh; fi
+- if [ $TRAVIS_HAXE_VERSION == "3.4.7" ] && [ $HAXE_TARGET == "flash" ]; then ./.travis/post-deploy.sh; fi
 
 notifications:
   email:
